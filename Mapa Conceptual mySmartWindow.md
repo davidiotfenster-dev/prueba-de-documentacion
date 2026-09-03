@@ -1,7 +1,5 @@
 # 📱 Mapa Conceptual y Funcional: mySmartWindow
 
-A continuación tienes el mapa estructural de la aplicación en formato "árbol" (totalmente libre de códigos) para que lo puedas ver de un solo vistazo. Debajo se encuentra la documentación detallada.
-
 ## 🌳 Estructura Visual de la App
 
 ```text
@@ -64,7 +62,6 @@ A continuación tienes el mapa estructural de la aplicación en formato "árbol"
 * **Configuración de Dispositivos:** Sirve para configurar dispositivos nuevos. Tiene una pequeña guía para que se puedan configurar con las nuevas opciones.
 
 ### 🎛️ Panel Principal (Esferas)
-*Menú principal central de la aplicación.*
 
 * **🏘️ Viviendas:** En la pantalla principal aparecen tus viviendas. Al seleccionar una vivienda tienes varias acciones: subir o bajar todas las persianas de esa vivienda, y un ícono de lápiz que permite editar la configuración y el nombre de la vivienda. Además, al pulsar la vivienda se despliegan opciones específicas para cada dispositivo asociado.
 * **🚪 Habitaciones:** En la parte inferior puedes crear nuevas habitaciones para organizar los dispositivos. Esto permite separar, por ejemplo, 3 persianas en tu habitación y 2 en la de tus padres, facilitando un manejo más granular.
