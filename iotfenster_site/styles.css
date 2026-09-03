@@ -1,0 +1,489 @@
+/* =========================================================
+   styles.css – Estilos personalizados para mySmartWindow Docs
+   Complementa Tailwind CSS con animaciones y efectos premium.
+   ========================================================= */
+
+/* ─── IMPORTAR FUENTE PREMIUM ─────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ─── VARIABLES DE COLOR CORPORATIVO (iotfenster.com) ──────── */
+:root {
+  --color-primary:    #0066CC; /* Azul principal */
+  --color-secondary:  #0044AA; /* Azul oscuro para hover */
+  --color-accent:     #00A3E0; /* Azul claro / highlight */
+  --color-light:      #E8F2FF; /* Fondo azul muy suave */
+  --color-dark:       #0A1628; /* Azul casi negro para el hero */
+  --color-text:       #1E293B;
+  --color-muted:      #64748B;
+  --transition-speed: 0.3s;
+}
+
+/* ─── RESET Y BASE ─────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #F0F6FF;
+  color: var(--color-text);
+  scroll-behavior: smooth;
+}
+
+/* ─── BARRA DE NAVEGACIÓN ──────────────────────────────────── */
+/* Navbar fija en la parte superior con blur glassmorphism */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(0, 68, 170, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: background var(--transition-speed);
+}
+
+/* Logo en la navbar */
+.navbar-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+
+/* Enlace de navegación individual */
+.navbar-link {
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+.navbar-link:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+/* ─── SECCIÓN HERO ─────────────────────────────────────────── */
+/* Fondo degradado oscuro con patrón de puntos */
+.hero-section {
+  background: linear-gradient(135deg, var(--color-dark) 0%, #003399 60%, var(--color-primary) 100%);
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+}
+
+/* Patrón decorativo de puntos sobre el hero */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Círculo decorativo animado en el hero */
+.hero-decorativo-circulo {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.08;
+  animation: pulso 4s ease-in-out infinite;
+}
+
+/* Badge/etiqueta del hero */
+.hero-badge {
+  display: inline-block;
+  background: rgba(0, 163, 224, 0.2);
+  border: 1px solid rgba(0, 163, 224, 0.4);
+  color: var(--color-accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+/* ─── ÁRBOL DE NAVEGACIÓN ──────────────────────────────────── */
+/* Contenedor principal del árbol de app */
+.arbol-app {
+  font-family: 'Courier New', monospace;
+  font-size: 0.92rem;
+  line-height: 1.8;
+  background: #0A1628;
+  color: #A8C8FF;
+  border-radius: 12px;
+  padding: 1.5rem 1.8rem;
+  border: 1px solid rgba(0, 102, 204, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Barra de título estilo terminal */
+.arbol-app::before {
+  content: '● ● ●';
+  display: block;
+  color: #FF5F57;
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  margin-bottom: 0.8rem;
+  opacity: 0.7;
+}
+
+/* Nodos del árbol que son clicables */
+.arbol-nodo-clicable {
+  color: #66CCFF;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color var(--transition-speed);
+  border-bottom: 1px dashed rgba(102, 204, 255, 0.3);
+}
+
+.arbol-nodo-clicable:hover {
+  color: #FFFFFF;
+  border-bottom-color: #fff;
+}
+
+/* ─── TARJETAS DE SECCIÓN ──────────────────────────────────── */
+/* Tarjeta principal para cada sección de la documentación */
+.tarjeta-seccion {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #E2EEFF;
+  box-shadow: 0 2px 12px rgba(0, 102, 204, 0.06);
+  transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+  overflow: hidden;
+}
+
+.tarjeta-seccion:hover {
+  box-shadow: 0 8px 32px rgba(0, 102, 204, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Cabecera de cada tarjeta (acorde) */
+.tarjeta-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--color-light) 0%, #fff 100%);
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--transition-speed), background var(--transition-speed);
+  user-select: none;
+}
+
+.tarjeta-cabecera:hover {
+  background: var(--color-light);
+  border-bottom-color: var(--color-primary);
+}
+
+/* Icono emoji grande de la cabecera */
+.tarjeta-icono {
+  font-size: 1.8rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Título de la tarjeta */
+.tarjeta-titulo {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+/* Icono de flecha que rota al abrir el acordeón */
+.flecha-acordeon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-primary);
+  transition: transform var(--transition-speed);
+  flex-shrink: 0;
+}
+
+.flecha-acordeon.girada {
+  transform: rotate(180deg);
+}
+
+/* Contenido del acordeón (colapsable) */
+.contenido-acordeon {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s;
+  padding: 0 1.5rem;
+}
+
+.contenido-acordeon.abierto {
+  max-height: 2000px;
+  padding: 1.25rem 1.5rem;
+}
+
+/* ─── TARJETAS DE VÍDEO ────────────────────────────────────── */
+/* Grid de tarjetas de vídeo de YouTube */
+.grid-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+/* Tarjeta individual de vídeo */
+.tarjeta-video {
+  background: linear-gradient(135deg, #0A1628 0%, #003399 100%);
+  border-radius: 12px;
+  padding: 1rem;
+  text-decoration: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border: 1px solid rgba(0, 102, 204, 0.3);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed), border-color var(--transition-speed);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de brillo en hover */
+.tarjeta-video::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity var(--transition-speed);
+}
+
+.tarjeta-video:hover::before {
+  opacity: 1;
+}
+
+.tarjeta-video:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 102, 204, 0.4);
+  border-color: var(--color-accent);
+}
+
+/* Icono de play del vídeo */
+.video-icono-play {
+  width: 36px;
+  height: 36px;
+  background: #FF0000;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+/* Texto del título del vídeo */
+.video-titulo {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ─── TARJETAS DE PDF ──────────────────────────────────────── */
+/* Enlace de PDF individual */
+.tarjeta-pdf {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #F8FBFF;
+  border: 1px solid #C8DEFF;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--color-secondary);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: all var(--transition-speed);
+}
+
+.tarjeta-pdf:hover {
+  background: var(--color-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateX(4px);
+}
+
+/* Icono PDF rojo */
+.pdf-icono {
+  width: 32px;
+  height: 32px;
+  background: #FF4444;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ─── CHIPS DE CARACTERÍSTICA ──────────────────────────────── */
+/* Pequeña etiqueta para listar funciones */
+.chip-funcion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--color-light);
+  color: var(--color-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid #C8DEFF;
+  margin: 0.25rem;
+}
+
+/* ─── BOTÓN PRINCIPAL ──────────────────────────────────────── */
+.boton-primario {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.boton-primario:hover {
+  background: var(--color-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 68, 170, 0.35);
+}
+
+/* ─── BARRA LATERAL DE NAVEGACIÓN RÁPIDA ──────────────────── */
+/* Sticky sidebar para desktop */
+.barra-lateral {
+  position: sticky;
+  top: 80px;
+}
+
+/* Enlace dentro del índice lateral */
+.enlace-lateral {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--transition-speed);
+  border-left: 3px solid transparent;
+}
+
+.enlace-lateral:hover,
+.enlace-lateral.activo {
+  color: var(--color-primary);
+  background: var(--color-light);
+  border-left-color: var(--color-primary);
+}
+
+/* ─── BADGE DE SECCIÓN ─────────────────────────────────────── */
+/* Pequeña pastilla de color que indica tipo de contenido */
+.badge-tipo {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.badge-video   { background: #FFE4E4; color: #CC0000; }
+.badge-pdf     { background: #FFE4E4; color: #CC0000; }
+.badge-funcion { background: var(--color-light); color: var(--color-primary); }
+
+/* ─── ANIMACIONES ──────────────────────────────────────────── */
+/* Animación de latido/pulso para los círculos decorativos */
+@keyframes pulso {
+  0%, 100% { transform: scale(1); opacity: 0.06; }
+  50%       { transform: scale(1.15); opacity: 0.12; }
+}
+
+/* Entrada desde abajo con fade */
+@keyframes entrada-abajo {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Clases de animación de entrada usadas en el HTML */
+.animar-entrada {
+  animation: entrada-abajo 0.6s ease both;
+}
+
+.animar-entrada-lento {
+  animation: entrada-abajo 0.9s ease 0.2s both;
+}
+
+/* ─── BARRA DE PROGRESO DE SCROLL ──────────────────────────── */
+/* Barra azul en la parte superior que indica progreso de lectura */
+.barra-progreso-scroll {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+  width: 0%;
+  z-index: 200;
+  transition: width 0.1s linear;
+}
+
+/* ─── TOOLTIP ──────────────────────────────────────────────── */
+/* Tooltip que aparece en hover de algunos enlaces */
+.con-tooltip {
+  position: relative;
+}
+
+.con-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-dark);
+  color: #fff;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-speed);
+}
+
+.con-tooltip:hover::after {
+  opacity: 1;
+}
+
+/* ─── FOOTER ───────────────────────────────────────────────── */
+.footer-principal {
+  background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-secondary) 100%);
+  color: rgba(255,255,255,0.75);
+}
+
+/* ─── RESPONSIVE ───────────────────────────────────────────── */
+/* Ocultar sidebar en móvil */
+@media (max-width: 1023px) {
+  .barra-lateral {
+    display: none;
+  }
+}
