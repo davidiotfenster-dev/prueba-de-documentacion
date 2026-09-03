@@ -1,86 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mySmartWindow – Mapa Funcional Interactivo</title>
-  <meta name="description" content="Documentación interactiva y funcional de la app mySmartWindow. Vídeos, PDFs y árbol de navegación.">
+<!--
+  SUBPÁGINA: Mapa Funcional mySmartWindow
+  Incrustar dentro del <main> o contenedor de la web padre.
+  Dependencias necesarias en la web padre:
+    - Tailwind CSS (cdn.tailwindcss.com)
+    - styles.css (mismo directorio)
+-->
 
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CSS — eliminar si la web padre ya lo incluye -->
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="styles.css">
 
-  <!-- Estilos personalizados (separados del HTML) -->
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body class="min-h-screen">
-
-  <!-- Barra de progreso de scroll -->
-  <div class="barra-progreso-scroll" id="barraProgreso"></div>
-
-  <!-- Navbar principal fija con glassmorphism -->
-  <header class="navbar">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-
-      <!-- Logo / Nombre de la app -->
-      <a href="#inicio" class="navbar-logo flex items-center gap-2">
-        🪟 mySmartWindow
-      </a>
-
-      <!-- Menú de navegación (escritorio) -->
-      <ul class="hidden md:flex items-center gap-1">
-        <li><a href="#estructura"   class="navbar-link">🌳 Estructura</a></li>
-        <li><a href="#funciones"    class="navbar-link">🎛️ Funciones</a></li>
-        <li><a href="#videos"       class="navbar-link">🎬 Vídeos</a></li>
-        <li><a href="#documentos"   class="navbar-link">📄 Documentos</a></li>
-        <li><a href="#conectividad" class="navbar-link">🌐 Conectividad</a></li>
-      </ul>
-
-      <!-- Botón externo – Web oficial -->
-      <a href="https://www.iotfenster.com" target="_blank" rel="noopener"
-         class="boton-primario hidden sm:inline-flex">
-        🌐 iotfenster.com
-      </a>
-    </nav>
-  </header>
-
-  <!-- Hero: cabecera visual con degradado oscuro -->
-  <section id="inicio" class="hero-section flex items-center" style="padding-top: 64px;">
-
-    <!-- Círculos decorativos animados (puramente decorativos) -->
-    <div class="hero-decorativo-circulo bg-blue-400"
-         style="width:500px;height:500px;top:-150px;right:-100px;"></div>
-    <div class="hero-decorativo-circulo bg-cyan-400"
-         style="width:300px;height:300px;bottom:-80px;left:-60px;animation-delay:2s;"></div>
-
-    <!-- Contenido del hero -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 w-full">
-      <div class="max-w-2xl animar-entrada">
-        <span class="hero-badge">📱 Android App – IoT Fenster</span>
-        <h1 class="text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-4">
-          Mapa Funcional<br>
-          <span style="color: #00A3E0;">mySmartWindow</span>
-        </h1>
-        <p class="text-blue-200 text-lg mb-8 leading-relaxed">
-          Navega por todas las secciones de la app: árbol de funciones, vídeos
-          tutoriales, documentos PDF y mucho más — todo en un solo lugar.
-        </p>
-        <!-- Botones de acción principales -->
-        <div class="flex flex-wrap gap-3">
-          <a href="#estructura" class="boton-primario">
-            🌳 Ver estructura
-          </a>
-          <a href="https://www.youtube.com/channel/UCOYzORrjwX-krZhyK9-NqBQ"
-             target="_blank" rel="noopener"
-             class="boton-primario" style="background: #FF0000;">
-            ▶ Canal YouTube
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Cuerpo principal: sidebar lateral + contenido -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- Contenido de la subpágina -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="flex gap-8">
 
       <!-- Sidebar: índice de navegación rápida, solo visible en desktop -->
@@ -555,88 +486,58 @@
 
       </div>
     </div>
-  </main>
+  </div><!-- fin subpágina -->
 
-  <!-- Footer -->
-  <footer class="footer-principal mt-12 py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div>
-        <p class="text-white font-bold text-lg">🪟 mySmartWindow</p>
-        <p class="text-sm text-blue-200">Documentación interactiva – IoT Fenster</p>
-      </div>
-      <div class="flex gap-4 flex-wrap justify-center">
-        <a href="https://www.iotfenster.com" target="_blank"
-           class="text-blue-200 hover:text-white text-sm transition-colors">🌐 iotfenster.com</a>
-        <a href="https://www.youtube.com/channel/UCOYzORrjwX-krZhyK9-NqBQ" target="_blank"
-           class="text-blue-200 hover:text-white text-sm transition-colors">▶ Canal YouTube</a>
-      </div>
-      <p class="text-blue-300 text-sm">© 2026 IoT Fenster</p>
-    </div>
-  </footer>
+<!-- JavaScript: lógica de acordeones y animaciones de entrada -->
+<script>
+  // Abre o cierra el acordeón al pulsar su cabecera
+  function toggleAcordeon(cabecera) {
+    const contenido = cabecera.nextElementSibling;
+    const flecha    = cabecera.querySelector('.flecha-acordeon');
+    const estaAbierto = contenido.classList.contains('abierto');
 
-  <!-- JavaScript: lógica de interactividad -->
-  <script>
-    // Abre o cierra el acordeón al pulsar su cabecera
-    function toggleAcordeon(cabecera) {
-      const contenido = cabecera.nextElementSibling;
-      const flecha    = cabecera.querySelector('.flecha-acordeon');
-      const estaAbierto = contenido.classList.contains('abierto');
-
-      if (estaAbierto) {
-        contenido.classList.remove('abierto');
-        flecha.classList.remove('girada');
-      } else {
-        contenido.classList.add('abierto');
-        flecha.classList.add('girada');
-      }
+    if (estaAbierto) {
+      contenido.classList.remove('abierto');
+      flecha.classList.remove('girada');
+    } else {
+      contenido.classList.add('abierto');
+      flecha.classList.add('girada');
     }
+  }
 
-    // Barra de progreso: actualiza su ancho al hacer scroll
-    const barraProgreso = document.getElementById('barraProgreso');
+  // Sidebar activo: resalta el enlace lateral de la sección visible en pantalla
+  const enlacesLaterales = document.querySelectorAll('.enlace-lateral');
+  const secciones = document.querySelectorAll('section[id]');
 
-    window.addEventListener('scroll', () => {
-      const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollActual = window.scrollY;
-      const porcentaje = (scrollActual / scrollTotal) * 100;
-      barraProgreso.style.width = porcentaje + '%';
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach(entrada => {
+      if (entrada.isIntersecting) {
+        enlacesLaterales.forEach(enlace => enlace.classList.remove('activo'));
+        const enlaceActivo = document.querySelector(`.enlace-lateral[href="#${entrada.target.id}"]`);
+        if (enlaceActivo) enlaceActivo.classList.add('activo');
+      }
     });
+  }, { rootMargin: '-30% 0px -60% 0px' });
 
-    // Sidebar activo: resalta el enlace lateral de la sección visible en pantalla
-    const enlacesLaterales = document.querySelectorAll('.enlace-lateral');
-    const secciones = document.querySelectorAll('section[id]');
+  secciones.forEach(seccion => observador.observe(seccion));
 
-    const observador = new IntersectionObserver((entradas) => {
-      entradas.forEach(entrada => {
-        if (entrada.isIntersecting) {
-          enlacesLaterales.forEach(enlace => enlace.classList.remove('activo'));
-          const enlaceActivo = document.querySelector(`.enlace-lateral[href="#${entrada.target.id}"]`);
-          if (enlaceActivo) enlaceActivo.classList.add('activo');
-        }
-      });
-    }, { rootMargin: '-30% 0px -60% 0px' });
+  // Animación de entrada: las tarjetas aparecen al entrar en el viewport
+  const elementosAnimados = document.querySelectorAll('.tarjeta-seccion, .tarjeta-video');
 
-    secciones.forEach(seccion => observador.observe(seccion));
-
-    // Animación de entrada: las tarjetas aparecen al entrar en el viewport
-    const elementosAnimados = document.querySelectorAll('.tarjeta-seccion, .tarjeta-video');
-
-    const observadorEntrada = new IntersectionObserver((entradas) => {
-      entradas.forEach(entrada => {
-        if (entrada.isIntersecting) {
-          entrada.target.style.opacity = '1';
-          entrada.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
-
-    // Inicialmente invisibles para que la animación tenga efecto
-    elementosAnimados.forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observadorEntrada.observe(el);
+  const observadorEntrada = new IntersectionObserver((entradas) => {
+    entradas.forEach(entrada => {
+      if (entrada.isIntersecting) {
+        entrada.target.style.opacity = '1';
+        entrada.target.style.transform = 'translateY(0)';
+      }
     });
-  </script>
+  }, { threshold: 0.1 });
 
-</body>
-</html>
+  // Inicialmente invisibles para que la animación tenga efecto
+  elementosAnimados.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observadorEntrada.observe(el);
+  });
+</script>
