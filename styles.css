@@ -8,13 +8,18 @@
 
 /* ─── VARIABLES DE COLOR CORPORATIVO (iotfenster.com) ──────── */
 :root {
-  --color-primary:    #0066CC; /* Azul principal */
-  --color-secondary:  #0044AA; /* Azul oscuro para hover */
-  --color-accent:     #00A3E0; /* Azul claro / highlight */
-  --color-light:      #E8F2FF; /* Fondo azul muy suave */
-  --color-dark:       #0A1628; /* Azul casi negro para el hero */
-  --color-text:       #1E293B;
-  --color-muted:      #64748B;
+  --color-primary: #059669;
+  /* Verde Esmeralda principal */
+  --color-secondary: #047857;
+  /* Verde oscuro para hover */
+  --color-accent: #10B981;
+  /* Verde claro / highlight */
+  --color-light: #ECFDF5;
+  /* Fondo verde muy suave */
+  --color-dark: #0F172A;
+  /* Azul/Gris oscuro para fondos oscuros */
+  --color-text: #1E293B;
+  --color-muted: #64748B;
   --transition-speed: 0.3s;
 }
 
@@ -25,23 +30,22 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #F0F6FF;
+  background-color: #F8FAFC;
   color: var(--color-text);
   scroll-behavior: smooth;
 }
 
-/* ─── BARRA DE NAVEGACIÓN ──────────────────────────────────── */
 /* Navbar fija en la parte superior con blur glassmorphism */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 300;
   background: rgba(0, 68, 170, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: background var(--transition-speed);
 }
 
@@ -56,7 +60,7 @@ body {
 
 /* Enlace de navegación individual */
 .navbar-link {
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 500;
   font-size: 0.9rem;
   padding: 0.4rem 0.8rem;
@@ -66,7 +70,7 @@ body {
 }
 
 .navbar-link:hover {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
   color: #fff;
 }
 
@@ -84,7 +88,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -254,7 +258,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 60%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
   opacity: 0;
   transition: opacity var(--transition-speed);
 }
@@ -284,7 +288,7 @@ body {
 
 /* Texto del título del vídeo */
 .video-titulo {
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.82rem;
   font-weight: 500;
   line-height: 1.4;
@@ -373,7 +377,8 @@ body {
 .barra-lateral {
   position: sticky;
   top: 20px;
-  align-self: flex-start; /* necesario para que sticky funcione dentro de un flex */
+  align-self: flex-start;
+  /* necesario para que sticky funcione dentro de un flex */
 }
 
 /* Enlace dentro del índice lateral */
@@ -409,21 +414,48 @@ body {
   border-radius: 999px;
 }
 
-.badge-video   { background: #FFE4E4; color: #CC0000; }
-.badge-pdf     { background: #FFE4E4; color: #CC0000; }
-.badge-funcion { background: var(--color-light); color: var(--color-primary); }
+.badge-video {
+  background: #FFE4E4;
+  color: #CC0000;
+}
+
+.badge-pdf {
+  background: #FFE4E4;
+  color: #CC0000;
+}
+
+.badge-funcion {
+  background: var(--color-light);
+  color: var(--color-primary);
+}
 
 /* ─── ANIMACIONES ──────────────────────────────────────────── */
 /* Animación de latido/pulso para los círculos decorativos */
 @keyframes pulso {
-  0%, 100% { transform: scale(1); opacity: 0.06; }
-  50%       { transform: scale(1.15); opacity: 0.12; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.06;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 0.12;
+  }
 }
 
 /* Entrada desde abajo con fade */
 @keyframes entrada-abajo {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Clases de animación de entrada usadas en el HTML */
@@ -478,7 +510,7 @@ body {
 /* ─── FOOTER ───────────────────────────────────────────────── */
 .footer-principal {
   background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-secondary) 100%);
-  color: rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 /* ─── RESPONSIVE ───────────────────────────────────────────── */
@@ -515,7 +547,7 @@ body {
   box-shadow:
     0 0 0 2px #333,
     0 20px 60px rgba(0, 102, 204, 0.5),
-    0 4px 20px rgba(0,0,0,0.4);
+    0 4px 20px rgba(0, 0, 0, 0.4);
   position: relative;
   margin: 0 auto;
 }
@@ -548,7 +580,7 @@ body {
   align-items: center;
   padding: 8px 16px 4px;
   font-size: 0.7rem;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
 }
 
@@ -558,7 +590,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 8px 14px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(4px);
 }
 
@@ -573,7 +605,7 @@ body {
   display: flex;
   gap: 10px;
   font-size: 0.9rem;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 /* Grid de burbujas (9 módulos) */
@@ -596,7 +628,7 @@ body {
 }
 
 .movil-burbuja:hover .movil-burbuja-circulo {
-  background: rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.3);
   transform: scale(1.08);
 }
 
@@ -605,8 +637,8 @@ body {
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.6);
-  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -624,7 +656,7 @@ body {
   height: 16px;
   background: #4CAF50;
   border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.8);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -634,12 +666,12 @@ body {
 
 /* Etiqueta de texto de la burbuja */
 .movil-burbuja-label {
-  color: rgba(255,255,255,0.95);
+  color: rgba(255, 255, 255, 0.95);
   font-size: 0.62rem;
   font-weight: 600;
   text-align: center;
   line-height: 1.2;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 /* Zona inferior con logo y botón de asistente */
@@ -655,18 +687,18 @@ body {
 }
 
 .movil-logo-marca {
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 1px;
   line-height: 1.2;
-  border: 1px solid rgba(255,255,255,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   padding: 4px 8px;
   border-radius: 4px;
 }
 
 .movil-logo-sub {
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.5rem;
   margin-top: 4px;
   letter-spacing: 0.5px;
@@ -678,7 +710,7 @@ body {
   height: 40px;
   border-radius: 50%;
   background: #1a1a2e;
-  border: 2px solid rgba(255,255,255,0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -693,13 +725,13 @@ body {
 
 /* Barra de conectividad inferior del teléfono */
 .movil-barra-conectividad {
-  background: rgba(0,0,0,0.25);
+  background: rgba(0, 0, 0, 0.25);
   padding: 8px 20px;
   display: flex;
   justify-content: flex-start;
   gap: 16px;
   font-size: 1rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Lista de nodos de la estructura (en la columna de texto) */
@@ -731,4 +763,3 @@ body {
   background: #D6E8FF;
   border-left-color: var(--color-accent);
 }
-
