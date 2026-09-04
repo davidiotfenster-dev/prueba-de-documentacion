@@ -1,214 +1,298 @@
-/* =========================================================
-   styles.css – Estilos personalizados para mySmartWindow Docs
-   Complementa Tailwind CSS con animaciones y efectos premium.
-   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-/* ─── IMPORTAR FUENTE PREMIUM ─────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-/* ─── VARIABLES DE COLOR CORPORATIVO (iotfenster.com) ──────── */
+/* ==========================================================
+   TOKENS — identidad mySmartWindow / IoT Fenster
+   Paleta inspirada en el cristal de las ventanas inteligentes
+   (verde eficiencia energética + destello cálido de luz solar)
+   ========================================================== */
 :root {
-  --color-primary: #059669;
-  /* Verde Esmeralda principal */
-  --color-secondary: #047857;
-  /* Verde oscuro para hover */
-  --color-accent: #10B981;
-  /* Verde claro / highlight */
-  --color-light: #ECFDF5;
-  /* Fondo verde muy suave */
-  --color-dark: #0F172A;
-  /* Azul/Gris oscuro para fondos oscuros */
-  --color-text: #1E293B;
-  --color-muted: #64748B;
-  --transition-speed: 0.3s;
+  /* Verdes de marca */
+  --brand: #0EA672;
+  --brand-strong: #0B7A56;
+  --brand-deep: #0A4632;
+  --brand-soft: #4ADE94;
+
+  /* Acento cálido — el "destello de luz" a través del cristal */
+  --sun: #F0B429;
+  --sun-soft: #FBD98A;
+
+  /* Base: grafito con temperatura verde, no gris-azulado genérico */
+  --ink: #071410;
+  --surface: #0E211B;
+  --surface-raised: #143229;
+  --surface-inset: #0A1B15;
+
+  --line: rgba(150, 214, 190, 0.14);
+  --line-strong: rgba(150, 214, 190, 0.28);
+
+  --text: #EDF7F2;
+  --text-dim: #C4DED2;
+  --muted: #86AC9C;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 9px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 10px 30px -12px rgba(4, 30, 20, 0.55);
+  --shadow-lift: 0 16px 40px -14px rgba(4, 30, 20, 0.7);
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --speed: 0.22s;
+
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
 }
 
-/* ─── RESET Y BASE ─────────────────────────────────────────── */
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #F8FAFC;
-  color: var(--color-text);
+  font-family: var(--font-body);
+  background-color: var(--ink);
+  background-image:
+    radial-gradient(ellipse 900px 500px at 12% -10%, rgba(14, 166, 114, 0.16), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 15%, rgba(240, 180, 41, 0.06), transparent 55%);
+  background-attachment: fixed;
+  color: var(--text);
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* Navbar fija en la parte superior con blur glassmorphism */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 300;
-  background: rgba(0, 68, 170, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: background var(--transition-speed);
+h1,
+h2,
+h3,
+.tarjeta-titulo,
+.video-titulo {
+  font-family: var(--font-display);
 }
 
-/* Logo en la navbar */
-.navbar-logo {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: -0.5px;
-  text-decoration: none;
-}
-
-/* Enlace de navegación individual */
-.navbar-link {
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 500;
-  font-size: 0.9rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: background var(--transition-speed), color var(--transition-speed);
-}
-
-.navbar-link:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
-}
-
-/* ─── SECCIÓN HERO ─────────────────────────────────────────── */
-/* Fondo degradado oscuro con patrón de puntos */
-.hero-section {
-  background: linear-gradient(135deg, var(--color-dark) 0%, #003399 60%, var(--color-primary) 100%);
+/* ─── CABECERA DE PÁGINA ───────────────────────────────────── */
+.cabecera-pagina {
   position: relative;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(155deg, rgba(14, 166, 114, 0.16), rgba(10, 27, 21, 0.4) 55%),
+    var(--surface);
+  padding: 1.5rem 1.5rem 1.65rem;
   overflow: hidden;
-  min-height: 420px;
+  box-shadow: var(--shadow-soft);
 }
 
-/* Patrón decorativo de puntos sobre el hero */
-.hero-section::before {
+@media (min-width: 640px) {
+  .cabecera-pagina {
+    padding: 2.1rem 2.4rem 2.3rem;
+  }
+}
+
+.cabecera-pagina::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 28px 28px;
+  top: -60%;
+  right: -10%;
+  width: 55%;
+  height: 220%;
+  background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.05) 48%, transparent 56%);
+  pointer-events: none;
 }
 
-/* Círculo decorativo animado en el hero */
-.hero-decorativo-circulo {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.08;
-  animation: pulso 4s ease-in-out infinite;
-}
-
-/* Badge/etiqueta del hero */
-.hero-badge {
-  display: inline-block;
-  background: rgba(0, 163, 224, 0.2);
-  border: 1px solid rgba(0, 163, 224, 0.4);
-  color: var(--color-accent);
-  font-size: 0.75rem;
+.cabecera-etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 0.35rem 1rem;
-  border-radius: 999px;
-  margin-bottom: 1rem;
+  color: var(--brand-soft);
+  background: rgba(14, 166, 114, 0.14);
+  border: 1px solid rgba(14, 166, 114, 0.3);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 0.9rem;
 }
 
-/* ─── ÁRBOL DE NAVEGACIÓN ──────────────────────────────────── */
-/* Contenedor principal del árbol de app */
+.cabecera-titulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 0 0 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .cabecera-titulo {
+    font-size: 2.1rem;
+  }
+}
+
+.cabecera-subtitulo {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  max-width: 46ch;
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .cabecera-subtitulo {
+    font-size: 1rem;
+  }
+}
+
+/* ─── ÁRBOL VISUAL APP ─────────────────────────────────────── */
 .arbol-app {
-  font-family: 'Courier New', monospace;
-  font-size: 0.92rem;
-  line-height: 1.8;
-  background: #0A1628;
-  color: #A8C8FF;
-  border-radius: 12px;
-  padding: 1.5rem 1.8rem;
-  border: 1px solid rgba(0, 102, 204, 0.3);
+  font-family: 'Space Grotesk', 'Courier New', monospace;
+  font-size: 0.78rem;
+  line-height: 1.65;
+  background-color: var(--surface-inset);
+  color: #B9EFD3;
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), var(--shadow-soft);
   position: relative;
-  overflow: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Barra de título estilo terminal */
+@media (min-width: 640px) {
+  .arbol-app {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    padding: 1.6rem 1.9rem;
+  }
+}
+
 .arbol-app::before {
-  content: '● ● ●';
+  content: '';
   display: block;
-  color: #FF5F57;
-  font-size: 0.8rem;
-  letter-spacing: 4px;
-  margin-bottom: 0.8rem;
-  opacity: 0.7;
+  width: 100%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand), var(--sun) 130%);
+  opacity: 0.55;
+  margin-bottom: 0.9rem;
 }
 
-/* Nodos del árbol que son clicables */
 .arbol-nodo-clicable {
-  color: #66CCFF;
+  color: var(--sun-soft);
   cursor: pointer;
   text-decoration: none;
-  transition: color var(--transition-speed);
-  border-bottom: 1px dashed rgba(102, 204, 255, 0.3);
+  font-weight: 500;
+  transition: color var(--speed) var(--ease);
+  border-bottom: 1px dashed rgba(240, 180, 41, 0.4);
 }
 
 .arbol-nodo-clicable:hover {
   color: #FFFFFF;
-  border-bottom-color: #fff;
+  border-bottom-color: #FFFFFF;
 }
 
-/* ─── TARJETAS DE SECCIÓN ──────────────────────────────────── */
-/* Tarjeta principal para cada sección de la documentación */
+/* ─── SECCIÓN: TÍTULOS ─────────────────────────────────────── */
+section>h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #FFFFFF !important;
+}
+
+/* ─── TARJETAS DE SECCIÓN (acordeones y bloques) ───────────── */
 .tarjeta-seccion {
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid #E2EEFF;
-  box-shadow: 0 2px 12px rgba(0, 102, 204, 0.06);
-  transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  position: relative;
+  transition: border-color var(--speed) var(--ease), transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
   overflow: hidden;
+  color: var(--text);
+  box-shadow: var(--shadow-soft);
+}
+
+.tarjeta-seccion::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--brand-soft));
 }
 
 .tarjeta-seccion:hover {
-  box-shadow: 0 8px 32px rgba(0, 102, 204, 0.15);
+  border-color: var(--line-strong);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
 }
 
-/* Cabecera de cada tarjeta (acorde) */
 .tarjeta-cabecera {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 1.5rem;
+  padding: 0.9rem 1.25rem;
   cursor: pointer;
-  background: linear-gradient(90deg, var(--color-light) 0%, #fff 100%);
-  border-bottom: 2px solid transparent;
-  transition: border-color var(--transition-speed), background var(--transition-speed);
+  background-color: transparent;
+  color: #FFFFFF;
   user-select: none;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--speed) var(--ease);
 }
 
 .tarjeta-cabecera:hover {
-  background: var(--color-light);
-  border-bottom-color: var(--color-primary);
+  background-color: rgba(14, 166, 114, 0.08);
 }
 
-/* Icono emoji grande de la cabecera */
+@media (min-width: 640px) {
+  .tarjeta-cabecera {
+    padding: 1.3rem 1.6rem;
+  }
+}
+
+.tarjeta-cabecera .tarjeta-titulo {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+@media (min-width: 640px) {
+  .tarjeta-cabecera .tarjeta-titulo {
+    font-size: 1.1rem;
+  }
+}
+
+.tarjeta-cabecera p {
+  color: var(--muted);
+}
+
 .tarjeta-icono {
-  font-size: 1.8rem;
-  margin-right: 0.75rem;
+  font-size: 1.4rem;
+  margin-right: 0.6rem;
   flex-shrink: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(155deg, rgba(14, 166, 114, 0.22), rgba(14, 166, 114, 0.06));
+  border: 1px solid var(--line);
 }
 
-/* Título de la tarjeta */
-.tarjeta-titulo {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--color-secondary);
+@media (min-width: 640px) {
+  .tarjeta-icono {
+    font-size: 1.6rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    margin-right: 0.85rem;
+  }
 }
 
-/* Icono de flecha que rota al abrir el acordeón */
 .flecha-acordeon {
-  width: 20px;
-  height: 20px;
-  color: var(--color-primary);
-  transition: transform var(--transition-speed);
+  width: 18px;
+  height: 18px;
+  color: var(--brand-soft);
+  transition: transform var(--speed) var(--ease);
   flex-shrink: 0;
 }
 
@@ -216,550 +300,373 @@ body {
   transform: rotate(180deg);
 }
 
-/* Contenido del acordeón (colapsable) */
 .contenido-acordeon {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s;
-  padding: 0 1.5rem;
+  transition: max-height 0.4s var(--ease), padding 0.3s var(--ease);
+  padding: 0 1.25rem;
+  background-color: var(--surface);
+  border-top: 1px solid transparent;
 }
 
 .contenido-acordeon.abierto {
-  max-height: 2000px;
-  padding: 1.25rem 1.5rem;
+  max-height: 3000px;
+  padding: 0.2rem 1.25rem 1.35rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 640px) {
+  .contenido-acordeon.abierto {
+    padding: 0.3rem 1.6rem 1.6rem;
+  }
+}
+
+/* Bloques de módulos dentro del panel principal */
+.contenido-acordeon .bg-emerald-50\/60 {
+  background: var(--surface-raised) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-sm) !important;
+  transition: border-color var(--speed) var(--ease), transform var(--speed) var(--ease);
+}
+
+.contenido-acordeon .bg-emerald-50\/60:hover {
+  border-color: var(--line-strong) !important;
+  transform: translateY(-1px);
+}
+
+/* ─── Reasignación global de utilidades de color de Tailwind
+   al nuevo sistema de tokens (contenido y enlaces intactos) ─── */
+.text-emerald-950,
+.text-emerald-900 {
+  color: #FFFFFF !important;
+}
+
+.text-emerald-800 {
+  color: var(--brand-soft) !important;
+}
+
+.text-gray-600,
+.text-gray-500 {
+  color: var(--muted) !important;
 }
 
 /* ─── TARJETAS DE VÍDEO ────────────────────────────────────── */
-/* Grid de tarjetas de vídeo de YouTube */
 .grid-videos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.7rem;
   margin-top: 0.75rem;
 }
 
-/* Tarjeta individual de vídeo */
+@media (min-width: 480px) {
+  .grid-videos {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
 .tarjeta-video {
-  background: linear-gradient(135deg, #0A1628 0%, #003399 100%);
-  border-radius: 12px;
-  padding: 1rem;
+  background-color: var(--surface-inset);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
   text-decoration: none;
   display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  border: 1px solid rgba(0, 102, 204, 0.3);
-  transition: transform var(--transition-speed), box-shadow var(--transition-speed), border-color var(--transition-speed);
-  position: relative;
-  overflow: hidden;
+  align-items: center;
+  gap: 0.65rem;
+  border: 1px solid var(--line);
+  transition: border-color var(--speed) var(--ease), background-color var(--speed) var(--ease), transform var(--speed) var(--ease);
 }
 
-/* Efecto de brillo en hover */
-.tarjeta-video::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity var(--transition-speed);
-}
-
-.tarjeta-video:hover::before {
-  opacity: 1;
+@media (min-width: 640px) {
+  .tarjeta-video {
+    padding: 0.9rem 1rem;
+    gap: 0.75rem;
+    border-radius: var(--radius-sm);
+  }
 }
 
 .tarjeta-video:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 12px 32px rgba(0, 102, 204, 0.4);
-  border-color: var(--color-accent);
+  border-color: var(--brand);
+  background-color: var(--surface-raised);
+  transform: translateY(-1px);
 }
 
-/* Icono de play del vídeo */
 .video-icono-play {
-  width: 36px;
-  height: 36px;
-  background: #FF0000;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(155deg, var(--sun), #D9930E);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 0.9rem;
+  color: #241503;
+  font-size: 0.72rem;
 }
 
-/* Texto del título del vídeo */
+@media (min-width: 640px) {
+  .video-icono-play {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    font-size: 0.85rem;
+  }
+}
+
 .video-titulo {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.82rem;
+  color: var(--text);
+  font-size: 0.76rem;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.35;
+}
+
+@media (min-width: 640px) {
+  .video-titulo {
+    font-size: 0.83rem;
+  }
 }
 
 /* ─── TARJETAS DE PDF ──────────────────────────────────────── */
-/* Enlace de PDF individual */
 .tarjeta-pdf {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  background: #F8FBFF;
-  border: 1px solid #C8DEFF;
-  border-radius: 10px;
+  gap: 0.65rem;
+  padding: 0.65rem 0.85rem;
+  background-color: var(--surface-inset);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
   text-decoration: none;
-  color: var(--color-secondary);
-  font-size: 0.88rem;
+  color: var(--text-dim);
+  font-size: 0.8rem;
   font-weight: 500;
-  transition: all var(--transition-speed);
+  transition: all var(--speed) var(--ease);
+}
+
+@media (min-width: 640px) {
+  .tarjeta-pdf {
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+  }
 }
 
 .tarjeta-pdf:hover {
-  background: var(--color-light);
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  transform: translateX(4px);
+  background-color: var(--surface-raised);
+  border-color: var(--brand);
+  color: var(--brand-soft);
+  transform: translateY(-1px);
 }
 
-/* Icono PDF rojo */
 .pdf-icono {
-  width: 32px;
-  height: 32px;
-  background: #FF4444;
-  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(155deg, var(--brand), var(--brand-strong));
+  border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-size: 0.7rem;
+  color: #FFFFFF;
+  font-size: 0.62rem;
   font-weight: 700;
   flex-shrink: 0;
+  letter-spacing: 0.02em;
 }
 
-/* ─── CHIPS DE CARACTERÍSTICA ──────────────────────────────── */
-/* Pequeña etiqueta para listar funciones */
+#documentos .tarjeta-seccion,
+#conectividad .tarjeta-seccion {
+  box-shadow: var(--shadow-soft);
+}
+
+#conectividad .text-2xl,
+#conectividad .text-3xl {
+  filter: drop-shadow(0 4px 10px rgba(14, 166, 114, 0.25));
+}
+
+/* ─── CHIPS DE FUNCIONALIDADES ─────────────────────────────── */
 .chip-funcion {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  background: var(--color-light);
-  color: var(--color-secondary);
-  font-size: 0.82rem;
+  background-color: rgba(14, 166, 114, 0.14);
+  color: var(--brand-soft);
+  font-size: 0.74rem;
   font-weight: 600;
-  padding: 0.35rem 0.75rem;
-  border-radius: 999px;
-  border: 1px solid #C8DEFF;
-  margin: 0.25rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(14, 166, 114, 0.32);
+  transition: border-color var(--speed) var(--ease), color var(--speed) var(--ease);
 }
 
-/* ─── BOTÓN PRINCIPAL ──────────────────────────────────────── */
-.boton-primario {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--color-primary);
-  color: #fff;
+a.chip-funcion:hover {
+  border-color: var(--sun);
+  color: var(--sun-soft);
+}
+
+/* ─── NAVEGACIÓN MÓVIL (franja superior) ───────────────────── */
+.nav-movil {
+  background: linear-gradient(150deg, var(--surface-raised), var(--ink) 120%);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+.nav-movil .franja-separador {
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-movil .logo-caja {
+  background: var(--surface-inset);
+  border: 1px solid var(--line);
+}
+
+.nav-movil .etiqueta-nav {
+  font-size: 0.68rem;
   font-weight: 600;
-  font-size: 0.9rem;
-  padding: 0.65rem 1.4rem;
-  border-radius: 10px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: background var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+  color: var(--brand-soft);
+  letter-spacing: 0.01em;
+  background: rgba(14, 166, 114, 0.14);
+  border: 1px solid rgba(14, 166, 114, 0.3);
+  padding: 0.32rem 0.7rem;
+  border-radius: var(--radius-pill);
 }
 
-.boton-primario:hover {
-  background: var(--color-secondary);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 68, 170, 0.35);
+.enlace-nav-movil {
+  white-space: nowrap;
+  padding: 0.4rem 0.85rem;
+  background-color: var(--surface-inset);
+  color: var(--text-dim);
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  border: 1px solid var(--line);
+  transition: all var(--speed) var(--ease);
 }
 
-/* ─── BARRA LATERAL DE NAVEGACIÓN RÁPIDA ──────────────────── */
-/* Sticky sidebar para desktop: top:20px porque es una subpágina sin navbar propio */
+.enlace-nav-movil:hover,
+.enlace-nav-movil:active {
+  background: linear-gradient(140deg, var(--brand), var(--brand-strong));
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+/* ─── BARRA LATERAL Y NAVEGACIÓN (escritorio) ──────────────── */
 .barra-lateral {
   position: sticky;
   top: 20px;
   align-self: flex-start;
-  /* necesario para que sticky funcione dentro de un flex */
 }
 
-/* Enlace dentro del índice lateral */
-.enlace-lateral {
+.panel-lateral {
+  background: linear-gradient(165deg, var(--surface-raised), var(--surface) 60%);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+.franja-logo-contenedor {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--surface-inset);
+  border: 1px solid var(--line);
+}
+
+.patron-formas-oscuras {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(14, 166, 114, 0.18), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(240, 180, 41, 0.1), transparent 50%);
+}
+
+.indice-etiqueta {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--brand-soft);
+  letter-spacing: 0.03em;
+}
+
+.punto-vivo {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brand-soft);
+  box-shadow: 0 0 0 3px rgba(14, 166, 114, 0.2);
+}
+
+.enlace-lateral-oscuro {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  color: var(--color-muted);
-  font-size: 0.85rem;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  text-decoration: none;
-  transition: all var(--transition-speed);
-  border-left: 3px solid transparent;
+  color: var(--text-dim);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-inset);
+  border: 1px solid var(--line);
+  transition: all var(--speed) var(--ease);
 }
 
-.enlace-lateral:hover,
-.enlace-lateral.activo {
-  color: var(--color-primary);
-  background: var(--color-light);
-  border-left-color: var(--color-primary);
+.enlace-lateral-oscuro:hover {
+  background-color: var(--surface-raised);
+  color: #FFFFFF;
+  border-color: var(--line-strong);
 }
 
-/* ─── BADGE DE SECCIÓN ─────────────────────────────────────── */
-/* Pequeña pastilla de color que indica tipo de contenido */
-.badge-tipo {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
+.enlace-lateral-oscuro.activo-oscuro {
+  background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+  color: #FFFFFF;
+  font-weight: 600;
+  border-color: transparent;
+  box-shadow: 0 6px 16px -6px rgba(14, 166, 114, 0.55);
 }
 
-.badge-video {
-  background: #FFE4E4;
-  color: #CC0000;
-}
-
-.badge-pdf {
-  background: #FFE4E4;
-  color: #CC0000;
-}
-
-.badge-funcion {
-  background: var(--color-light);
-  color: var(--color-primary);
-}
-
-/* ─── ANIMACIONES ──────────────────────────────────────────── */
-/* Animación de latido/pulso para los círculos decorativos */
-@keyframes pulso {
-
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.06;
-  }
-
-  50% {
-    transform: scale(1.15);
-    opacity: 0.12;
-  }
-}
-
-/* Entrada desde abajo con fade */
-@keyframes entrada-abajo {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Clases de animación de entrada usadas en el HTML */
-.animar-entrada {
-  animation: entrada-abajo 0.6s ease both;
-}
-
-.animar-entrada-lento {
-  animation: entrada-abajo 0.9s ease 0.2s both;
-}
-
-/* ─── BARRA DE PROGRESO DE SCROLL ──────────────────────────── */
-/* Barra azul en la parte superior que indica progreso de lectura */
-.barra-progreso-scroll {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
-  width: 0%;
-  z-index: 200;
-  transition: width 0.1s linear;
-}
-
-/* ─── TOOLTIP ──────────────────────────────────────────────── */
-/* Tooltip que aparece en hover de algunos enlaces */
+/* ─── TOOLTIP Y UTILIDADES ──────────────────────────────────── */
 .con-tooltip {
   position: relative;
 }
 
-.con-tooltip::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--color-dark);
-  color: #fff;
-  font-size: 0.75rem;
-  white-space: nowrap;
-  padding: 0.35rem 0.7rem;
-  border-radius: 6px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--transition-speed);
-}
+@media (min-width: 768px) {
+  .con-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--surface-inset);
+    border: 1px solid var(--line-strong);
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    white-space: nowrap;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--speed) var(--ease);
+  }
 
-.con-tooltip:hover::after {
-  opacity: 1;
-}
-
-/* ─── FOOTER ───────────────────────────────────────────────── */
-.footer-principal {
-  background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-secondary) 100%);
-  color: rgba(255, 255, 255, 0.75);
-}
-
-/* ─── RESPONSIVE ───────────────────────────────────────────── */
-/* Ocultar sidebar en móvil */
-@media (max-width: 1023px) {
-  .barra-lateral {
-    display: none;
+  .con-tooltip:hover::after {
+    opacity: 1;
   }
 }
 
-/* ─── MOCKUP DE MÓVIL (sección estructura) ─────────────────── */
-
-/* Contenedor de la sección estructura: dos columnas en desktop */
-.estructura-layout {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-  flex-wrap: wrap;
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-/* Columna de texto explicativo junto al móvil */
-.estructura-descripcion {
-  flex: 1;
-  min-width: 240px;
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* Marco exterior del teléfono */
-.movil-frame {
-  width: 260px;
-  flex-shrink: 0;
-  background: #1a1a2e;
-  border-radius: 40px;
-  padding: 10px;
-  box-shadow:
-    0 0 0 2px #333,
-    0 20px 60px rgba(0, 102, 204, 0.5),
-    0 4px 20px rgba(0, 0, 0, 0.4);
-  position: relative;
-  margin: 0 auto;
+a:focus-visible,
+button:focus-visible,
+.tarjeta-cabecera:focus-visible {
+  outline: 2px solid var(--sun);
+  outline-offset: 2px;
 }
 
-/* Botones físicos del móvil (decorativos) */
-.movil-frame::before {
-  content: '';
-  position: absolute;
-  right: -4px;
-  top: 80px;
-  width: 3px;
-  height: 50px;
-  background: #333;
-  border-radius: 0 3px 3px 0;
-}
-
-/* Pantalla interior */
-.movil-pantalla {
-  background: linear-gradient(180deg, #3a5da8 0%, #2e4d98 35%, #1e3070 70%, #15205a 100%);
-  border-radius: 30px;
-  overflow: hidden;
-  position: relative;
-  min-height: 520px;
-}
-
-/* Barra de estado (hora, batería, señal) */
-.movil-status-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 16px 4px;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 600;
-}
-
-/* Barra de título de la app */
-.movil-app-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 14px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(4px);
-}
-
-.movil-app-title {
-  color: #fff;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-}
-
-.movil-app-icons {
-  display: flex;
-  gap: 10px;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-/* Grid de burbujas (9 módulos) */
-.movil-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  padding: 20px 14px 16px;
-}
-
-/* Burbuja individual */
-.movil-burbuja {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.movil-burbuja:hover .movil-burbuja-circulo {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.08);
-}
-
-/* Círculo de la burbuja */
-.movil-burbuja-circulo {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  transition: background 0.2s, transform 0.2s;
-  position: relative;
-}
-
-/* Badge verde en la burbuja (como en la app) */
-.movil-burbuja-badge {
-  position: absolute;
-  bottom: 2px;
-  right: 2px;
-  width: 16px;
-  height: 16px;
-  background: #4CAF50;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.45rem;
-  color: #fff;
-}
-
-/* Etiqueta de texto de la burbuja */
-.movil-burbuja-label {
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 0.62rem;
-  font-weight: 600;
-  text-align: center;
-  line-height: 1.2;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-/* Zona inferior con logo y botón de asistente */
-.movil-footer-app {
-  padding: 8px 14px 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.movil-logo-zona {
-  text-align: left;
-}
-
-.movil-logo-marca {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  line-height: 1.2;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 4px 8px;
-  border-radius: 4px;
-}
-
-.movil-logo-sub {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.5rem;
-  margin-top: 4px;
-  letter-spacing: 0.5px;
-}
-
-/* Botón varita mágica (asistente) */
-.movil-btn-asistente {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #1a1a2e;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.movil-btn-asistente:hover {
-  background: #333;
-}
-
-/* Barra de conectividad inferior del teléfono */
-.movil-barra-conectividad {
-  background: rgba(0, 0, 0, 0.25);
-  padding: 8px 20px;
-  display: flex;
-  justify-content: flex-start;
-  gap: 16px;
-  font-size: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Lista de nodos de la estructura (en la columna de texto) */
-.nodo-lista {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.nodo-item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  background: #F0F6FF;
-  border-left: 3px solid var(--color-primary);
-  font-size: 0.88rem;
-  color: var(--color-secondary);
-  font-weight: 500;
-  text-decoration: none;
-  transition: background 0.2s, border-color 0.2s;
-}
-
-.nodo-item:hover {
-  background: #D6E8FF;
-  border-left-color: var(--color-accent);
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

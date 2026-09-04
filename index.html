@@ -1,49 +1,79 @@
-<!--
-  SUBPÁGINA: Mapa Funcional mySmartWindow
-  Incrustar dentro del <main> o contenedor de la web padre.
-  Dependencias necesarias en la web padre:
-    - Tailwind CSS (cdn.tailwindcss.com)
-    - styles.css (mismo directorio)
--->
-
-<!-- Tailwind CSS — eliminar si la web padre ya lo incluye -->
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="styles.css">
 
-<!-- Contenido de la subpágina -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-  <div class="flex gap-8">
+<div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
 
-    <!-- Sidebar: índice de navegación rápida, solo visible en desktop -->
-    <aside class="barra-lateral w-56 flex-shrink-0">
-      <div class="bg-white rounded-xl p-4 shadow border border-blue-100">
-        <p class="text-xs font-bold text-blue-900 uppercase tracking-widest mb-3">
-          Índice rápido
-        </p>
-        <nav class="flex flex-col gap-1">
-          <a href="#estructura" class="enlace-lateral">🌳 Estructura</a>
-          <a href="#funciones" class="enlace-lateral">🎛️ Documentación por Sección</a>
-          <a href="#videos" class="enlace-lateral">🎬 Vídeos</a>
-          <a href="#documentos" class="enlace-lateral">📄 Documentos PDF</a>
-          <a href="#conectividad" class="enlace-lateral">🌐 Conectividad</a>
-        </nav>
+  <!-- 0. Cabecera de bienvenida -->
+  <div class="cabecera-pagina mb-6">
+    <span class="cabecera-etiqueta">🪟 Centro de documentación</span>
+    <h1 class="cabecera-titulo">mySmartWindow — Guía de la app</h1>
+    <p class="cabecera-subtitulo">Todo lo que necesitas para dominar tus ventanas y persianas conectadas: estructura de
+      la app, vídeos, manuales en PDF y ayuda de conectividad.</p>
+  </div>
+
+  <!-- 1. Menú Flotante Móvil / Tablet -->
+  <div class="nav-movil block lg:hidden rounded-2xl p-3 sm:p-4 mb-6 sticky top-2 z-30 transition-all">
+    <div class="franja-separador flex items-center justify-between gap-3 mb-2.5 pb-2.5">
+      <div class="logo-caja flex items-center gap-2 px-3 py-1.5 rounded-xl">
+        <img src="logo.png" alt="Logo Empresa" class="h-8 sm:h-9 w-auto object-contain">
+      </div>
+      <span class="etiqueta-nav">
+        📍 Navegación
+      </span>
+    </div>
+
+    <!-- Navegación con scroll horizontal -->
+    <nav class="flex items-center gap-2 overflow-x-auto pb-1 text-xs sm:text-sm no-scrollbar">
+      <a href="#estructura" class="enlace-nav-movil">🌳 Estructura</a>
+      <a href="#funciones" class="enlace-nav-movil">🎛️ Secciones</a>
+      <a href="#videos" class="enlace-nav-movil">🎬 Vídeos</a>
+      <a href="#documentos" class="enlace-nav-movil">📄 PDFs</a>
+      <a href="#conectividad" class="enlace-nav-movil">🌐 Conectividad</a>
+    </nav>
+  </div>
+
+  <!-- 2. Contenedor Principal (Escritorio + Móvil) -->
+  <div class="flex flex-col lg:flex-row gap-8">
+
+    <!-- Menú Lateral ESCRITORIO (Panel Oscuro con Franjas Geométricas) -->
+    <aside class="barra-lateral w-60 flex-shrink-0 hidden lg:block">
+      <div class="panel-lateral text-white p-4 flex flex-col gap-5">
+
+        <!-- BLOQUE DEL LOGO -->
+        <div class="franja-logo-contenedor p-4 flex justify-center items-center">
+          <div class="patron-formas-oscuras"></div>
+          <img src="logo.png" alt="Logo Empresa" class="relative z-10 max-h-12 w-auto object-contain mx-auto block">
+        </div>
+
+        <div>
+          <p class="indice-etiqueta mb-3 px-1 flex items-center gap-1.5">
+            <span class="punto-vivo inline-block"></span>
+            Índice rápido
+          </p>
+          <nav class="flex flex-col gap-1.5">
+            <a href="#estructura" class="enlace-lateral-oscuro">🌳 Estructura</a>
+            <a href="#funciones" class="enlace-lateral-oscuro">🎛️ Documentación</a>
+            <a href="#videos" class="enlace-lateral-oscuro">🎬 Vídeos</a>
+            <a href="#documentos" class="enlace-lateral-oscuro">📄 Documentos PDF</a>
+            <a href="#conectividad" class="enlace-lateral-oscuro">🌐 Conectividad</a>
+          </nav>
+        </div>
+
       </div>
     </aside>
 
-    <!-- Contenido principal -->
-    <div class="flex-1 min-w-0 flex flex-col gap-8">
+    <!-- ÁREA DE CONTENIDO PRINCIPAL -->
+    <div class="flex-1 min-w-0 flex flex-col gap-6 sm:gap-8">
 
-      <!-- Sección: árbol visual de la app -->
+      <!-- Sección: Árbol Visual -->
       <section id="estructura">
-        <h2 class="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-2">
+        <h2 class="text-xl sm:text-2xl font-bold text-emerald-950 mb-3 sm:mb-4 flex items-center gap-2">
           🌳 Estructura Visual de la App
         </h2>
 
-        <!-- Árbol interactivo estilo terminal -->
         <div class="arbol-app">
           <p>📱 <span style="color:#fff;font-weight:700;">mySmartWindow</span> — App Android</p>
           <p>│</p>
-          <!-- Nodo: Barra Superior -->
           <p>├── 🔝 <a href="#barra-sup" class="arbol-nodo-clicable">Barra Superior (Navegación Global)</a></p>
           <p>│ ├── 🏠 Inicio — vuelve al menú principal</p>
           <p>│ ├── 👤 Usuario Activo — muestra email autenticado</p>
@@ -57,7 +87,6 @@
           <p>│ ├── Información, Licencias y Acerca de</p>
           <p>│ └── Salir</p>
           <p>│</p>
-          <!-- Nodo: Panel Principal -->
           <p>├── 🎛️ <a href="#panel" class="arbol-nodo-clicable">Panel Principal (Menú de Esferas)</a></p>
           <p>│ ├── 🏘️ Viviendas</p>
           <p>│ ├── 🚪 Habitaciones</p>
@@ -69,29 +98,27 @@
           <p>│ ├── 👥 Grupos</p>
           <p>│ └── 💬 Mensajes</p>
           <p>│</p>
-          <!-- Nodo: Asistente -->
           <p>├── 🪄 <a href="#asistente" class="arbol-nodo-clicable">Asistente de Vinculación</a></p>
           <p>│ └── ⚙️ Guía para dispositivos nuevos</p>
           <p>│</p>
-          <!-- Nodo: Barra Inferior -->
           <p>└── 🌐 <a href="#conectividad" class="arbol-nodo-clicable">Barra Inferior (Conectividad)</a></p>
           <p> ├── ☁️ Conexión Cloud</p>
           <p> └── 📶 Conexión Local (Wi‑Fi)</p>
         </div>
       </section>
 
-      <!-- Sección: funciones de la app con acordeones interactivos -->
+      <!-- Sección: Documentación por Sección -->
       <section id="funciones">
-        <h2 class="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-2">
+        <h2 class="text-xl sm:text-2xl font-bold text-emerald-950 mb-3 sm:mb-4 flex items-center gap-2">
           🎛️ Documentación por Sección
         </h2>
 
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-3 sm:gap-4">
 
           <!-- Acordeón: Barra Superior -->
           <div id="barra-sup" class="tarjeta-seccion">
             <div class="tarjeta-cabecera" onclick="toggleAcordeon(this)">
-              <div class="flex items-center">
+              <div class="flex items-center gap-2">
                 <span class="tarjeta-icono">🔝</span>
                 <div>
                   <p class="tarjeta-titulo">Barra Superior</p>
@@ -104,29 +131,28 @@
             </div>
             <div class="contenido-acordeon">
               <ul class="flex flex-col gap-3">
-                <li class="flex gap-3">
-                  <span class="text-xl">🏠</span>
-                  <div><strong class="text-blue-800">Inicio (Icono Casa):</strong>
-                    <span class="text-gray-600"> Desde cualquier pantalla, vuelves al menú principal con las
-                      opciones.</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-lg sm:text-xl">🏠</span>
+                  <div class="text-xs sm:text-sm"><strong class="text-emerald-800">Inicio (Icono Casa):</strong>
+                    <span class="text-gray-600"> Desde cualquier pantalla, vuelves al menú principal.</span>
                   </div>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-xl">👤</span>
-                  <div><strong class="text-blue-800">Usuario Activo (Perfil):</strong>
-                    <span class="text-gray-600"> Muestra el correo del usuario autenticado en un popup.</span>
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-lg sm:text-xl">👤</span>
+                  <div class="text-xs sm:text-sm"><strong class="text-emerald-800">Usuario Activo:</strong>
+                    <span class="text-gray-600"> Muestra el correo del usuario en un popup.</span>
                   </div>
                 </li>
-                <li class="flex gap-3">
-                  <span class="text-xl">⋮</span>
-                  <div>
-                    <strong class="text-blue-800">Menú Oculto (3 Puntos):</strong>
-                    <div class="mt-2 flex flex-wrap">
+                <li class="flex gap-2 sm:gap-3">
+                  <span class="text-lg sm:text-xl">⋮</span>
+                  <div class="text-xs sm:text-sm w-full">
+                    <strong class="text-emerald-800">Menú Oculto (3 Puntos):</strong>
+                    <div class="mt-2 flex flex-wrap gap-1.5">
                       <span class="chip-funcion">Cambiar Usuario</span>
                       <span class="chip-funcion">Eliminar Usuario</span>
                       <span class="chip-funcion">Actualizar Vivienda</span>
                       <a href="https://youtu.be/xgwksfNHRGU" target="_blank"
-                        class="chip-funcion hover:bg-blue-200 transition-colors con-tooltip"
+                        class="chip-funcion hover:bg-emerald-200 transition-colors con-tooltip"
                         data-tooltip="Ver tutorial en YouTube">Lista de Asociados ▶</a>
                       <span class="chip-funcion">Reiniciar App</span>
                       <span class="chip-funcion">Soporte</span>
@@ -142,7 +168,7 @@
           <!-- Acordeón: Panel Principal -->
           <div id="panel" class="tarjeta-seccion">
             <div class="tarjeta-cabecera" onclick="toggleAcordeon(this)">
-              <div class="flex items-center">
+              <div class="flex items-center gap-2">
                 <span class="tarjeta-icono">🎛️</span>
                 <div>
                   <p class="tarjeta-titulo">Panel Principal – Menú de Esferas</p>
@@ -154,71 +180,63 @@
               </svg>
             </div>
             <div class="contenido-acordeon">
-              <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-
-                <div class="bg-blue-50 rounded-xl p-3 border border-blue-100">
-                  <p class="font-bold text-blue-800">🏘️ Viviendas</p>
-                  <p class="text-sm text-gray-600 mt-1">Gestiona, renombra y sube/baja todas las persianas de una
-                    vivienda a la vez.</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div class="bg-emerald-50/60 rounded-xl p-3 border border-emerald-100">
+                  <p class="font-bold text-emerald-900 text-sm sm:text-base">🏘️ Viviendas</p>
+                  <p class="text-xs sm:text-sm text-gray-600 mt-1">Gestiona, renombra y sube/baja todas las persianas de
+                    una vivienda a la vez.</p>
                 </div>
-
-                <div class="bg-blue-50 rounded-xl p-3 border border-blue-100">
-                  <p class="font-bold text-blue-800">🚪 Habitaciones</p>
-                  <p class="text-sm text-gray-600 mt-1">Crea y organiza habitaciones para separar los dispositivos de
-                    cada zona.</p>
+                <div class="bg-emerald-50/60 rounded-xl p-3 border border-emerald-100">
+                  <p class="font-bold text-emerald-900 text-sm sm:text-base">🚪 Habitaciones</p>
+                  <p class="text-xs sm:text-sm text-gray-600 mt-1">Crea y organiza habitaciones para separar los
+                    dispositivos de cada zona.</p>
                 </div>
-
-                <div class="bg-blue-50 rounded-xl p-3 border border-blue-100">
-                  <p class="font-bold text-blue-800">🪟 Ventanas</p>
-                  <p class="text-sm text-gray-600 mt-1">Control visual en tiempo real: representación gráfica para
-                    subir/bajar persianas.</p>
+                <div class="bg-emerald-50/60 rounded-xl p-3 border border-emerald-100">
+                  <p class="font-bold text-emerald-900 text-sm sm:text-base">🪟 Ventanas</p>
+                  <p class="text-xs sm:text-sm text-gray-600 mt-1">Control visual en tiempo real: representación gráfica
+                    para subir/bajar persianas.</p>
                 </div>
-
-                <div class="bg-blue-50 rounded-xl p-3 border border-blue-100">
-                  <p class="font-bold text-blue-800">⚙️ Ajustes</p>
-                  <p class="text-sm text-gray-600 mt-1">Wi‑Fi, asociados, reinicio de vivienda y datos de acceso.</p>
+                <div class="bg-emerald-50/60 rounded-xl p-3 border border-emerald-100">
+                  <p class="font-bold text-emerald-900 text-sm sm:text-base">⚙️ Ajustes</p>
+                  <p class="text-xs sm:text-sm text-gray-600 mt-1">Wi‑Fi, asociados, reinicio de vivienda y datos de
+                    acceso.</p>
                 </div>
-
-                <div class="bg-blue-50 rounded-xl p-3 border border-blue-100">
-                  <p class="font-bold text-blue-800">⚠️ Alertas</p>
-                  <p class="text-sm text-gray-600 mt-1">Activa o desactiva alertas y configura sus modos según tus
-                    preferencias.</p>
+                <div class="bg-emerald-50/60 rounded-xl p-3 border border-emerald-100">
+                  <p class="font-bold text-emerald-900 text-sm sm:text-base">⚠️ Alertas</p>
+                  <p class="text-xs sm:text-sm text-gray-600 mt-1">Activa o desactiva alertas y configura sus modos
+                    según tus preferencias.</p>
                 </div>
-
-                <div class="bg-blue-50 rounded-xl p-3 border border-blue-100">
-                  <p class="font-bold text-blue-800">🔗 Integración</p>
-                  <p class="text-sm text-gray-600 mt-1">Conecta con Amazon Alexa, Google Home e IFTTT.</p>
+                <div class="bg-emerald-50/60 rounded-xl p-3 border border-emerald-100">
+                  <p class="font-bold text-emerald-900 text-sm sm:text-base">🔗 Integración</p>
+                  <p class="text-xs sm:text-sm text-gray-600 mt-1">Conecta con Amazon Alexa, Google Home e IFTTT.</p>
                 </div>
-
-                <div class="bg-blue-50 rounded-xl p-3 border border-blue-100">
-                  <p class="font-bold text-blue-800">⏰ Programador</p>
-                  <p class="text-sm text-gray-600 mt-1">Automatiza acciones: «A las 7h subir persiana 1 de habitación
-                    2».</p>
+                <div class="bg-emerald-50/60 rounded-xl p-3 border border-emerald-100">
+                  <p class="font-bold text-emerald-900 text-sm sm:text-base">⏰ Programador</p>
+                  <p class="text-xs sm:text-sm text-gray-600 mt-1">Automatiza acciones: «A las 7h subir persiana 1 de
+                    habitación 2».</p>
                 </div>
-
-                <div class="bg-blue-50 rounded-xl p-3 border border-blue-100">
-                  <p class="font-bold text-blue-800">👥 Grupos</p>
-                  <p class="text-sm text-gray-600 mt-1">Agrupa dispositivos en Virtual Rooms para controlarlos
-                    conjuntamente.</p>
+                <div class="bg-emerald-50/60 rounded-xl p-3 border border-emerald-100">
+                  <p class="font-bold text-emerald-900 text-sm sm:text-base">👥 Grupos</p>
+                  <p class="text-xs sm:text-sm text-gray-600 mt-1">Agrupa dispositivos en Virtual Rooms para
+                    controlarlos conjuntamente.</p>
                 </div>
-
-                <div class="bg-blue-50 rounded-xl p-3 border border-blue-100">
-                  <p class="font-bold text-blue-800">💬 Mensajes</p>
-                  <p class="text-sm text-gray-600 mt-1">Actualizaciones de firmware, nuevos servicios y notificaciones
-                    relevantes.</p>
+                <div class="bg-emerald-50/60 rounded-xl p-3 border border-emerald-100">
+                  <p class="font-bold text-emerald-900 text-sm sm:text-base">💬 Mensajes</p>
+                  <p class="text-xs sm:text-sm text-gray-600 mt-1">Actualizaciones de firmware, nuevos servicios y
+                    notificaciones relevantes.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Acordeón: Asistente de Vinculación -->
+          <!-- Acordeón: Asistente -->
           <div id="asistente" class="tarjeta-seccion">
             <div class="tarjeta-cabecera" onclick="toggleAcordeon(this)">
-              <div class="flex items-center">
+              <div class="flex items-center gap-2">
                 <span class="tarjeta-icono">🪄</span>
                 <div>
                   <p class="tarjeta-titulo">Asistente de Vinculación</p>
-                  <p class="text-xs text-gray-500">Burbuja varita mágica — configura nuevos dispositivos</p>
+                  <p class="text-xs text-gray-500">Configura nuevos dispositivos</p>
                 </div>
               </div>
               <svg class="flecha-acordeon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -226,36 +244,28 @@
               </svg>
             </div>
             <div class="contenido-acordeon">
-              <p class="text-gray-600 mb-3">
-                Aparece en la parte inferior del panel principal como una burbuja con varita mágica.
-                Al pulsarla, una guía paso a paso te ayuda a configurar dispositivos nuevos.
+              <p class="text-xs sm:text-sm text-gray-600 mb-3">
+                Aparece en la parte inferior del panel principal como una burbuja con varita mágica. Al pulsarla, una
+                guía te ayuda a configurar dispositivos nuevos.
               </p>
-              <p class="font-semibold text-blue-800 mb-2">🎬 Guías en vídeo:</p>
+              <p class="font-semibold text-emerald-900 text-xs sm:text-sm mb-2">🎬 Guías en vídeo:</p>
               <div class="grid-videos">
-                <a href="https://www.youtube.com/watch?v=KidyF4ZpdAE" target="_blank" class="tarjeta-video">
-                  <span class="video-icono-play">▶</span>
-                  <span class="video-titulo">Configuración dispositivos (1)</span>
-                </a>
-                <a href="https://www.youtube.com/watch?v=ItsojJBE0P4" target="_blank" class="tarjeta-video">
-                  <span class="video-icono-play">▶</span>
-                  <span class="video-titulo">Configuración dispositivos (2)</span>
-                </a>
-                <a href="https://www.youtube.com/watch?v=myijKC5RsZU" target="_blank" class="tarjeta-video">
-                  <span class="video-icono-play">▶</span>
-                  <span class="video-titulo">Configuración dispositivos (3)</span>
-                </a>
-                <a href="https://www.youtube.com/watch?v=TrPkktXX-dM" target="_blank" class="tarjeta-video">
-                  <span class="video-icono-play">▶</span>
-                  <span class="video-titulo">Configuración dispositivos (4)</span>
-                </a>
-                <a href="https://www.youtube.com/watch?v=j7V8uHqqbq0" target="_blank" class="tarjeta-video">
-                  <span class="video-icono-play">▶</span>
-                  <span class="video-titulo">Conexión Wi‑Fi</span>
-                </a>
-                <a href="https://www.youtube.com/watch?v=3xq4dhMhpd0" target="_blank" class="tarjeta-video">
-                  <span class="video-icono-play">▶</span>
-                  <span class="video-titulo">Conexión Bluetooth</span>
-                </a>
+                <a href="https://www.youtube.com/watch?v=KidyF4ZpdAE" target="_blank" class="tarjeta-video"><span
+                    class="video-icono-play">▶</span><span class="video-titulo">Configuración dispositivos
+                    (1)</span></a>
+                <a href="https://www.youtube.com/watch?v=ItsojJBE0P4" target="_blank" class="tarjeta-video"><span
+                    class="video-icono-play">▶</span><span class="video-titulo">Configuración dispositivos
+                    (2)</span></a>
+                <a href="https://www.youtube.com/watch?v=myijKC5RsZU" target="_blank" class="tarjeta-video"><span
+                    class="video-icono-play">▶</span><span class="video-titulo">Configuración dispositivos
+                    (3)</span></a>
+                <a href="https://www.youtube.com/watch?v=TrPkktXX-dM" target="_blank" class="tarjeta-video"><span
+                    class="video-icono-play">▶</span><span class="video-titulo">Configuración dispositivos
+                    (4)</span></a>
+                <a href="https://www.youtube.com/watch?v=j7V8uHqqbq0" target="_blank" class="tarjeta-video"><span
+                    class="video-icono-play">▶</span><span class="video-titulo">Conexión Wi‑Fi</span></a>
+                <a href="https://www.youtube.com/watch?v=3xq4dhMhpd0" target="_blank" class="tarjeta-video"><span
+                    class="video-icono-play">▶</span><span class="video-titulo">Conexión Bluetooth</span></a>
               </div>
             </div>
           </div>
@@ -263,284 +273,160 @@
         </div>
       </section>
 
-      <!-- Sección: vídeos tutoriales por categoría -->
+      <!-- Sección: Vídeos -->
       <section id="videos">
-        <h2 class="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-2">
+        <h2 class="text-xl sm:text-2xl font-bold text-emerald-950 mb-3 sm:mb-4 flex items-center gap-2">
           🎬 Vídeos Tutoriales
         </h2>
 
-        <div class="flex flex-col gap-6">
-
-          <!-- Ventanas y persianas -->
+        <div class="flex flex-col gap-5 sm:gap-6">
           <div>
-            <p class="font-bold text-blue-700 mb-2 flex items-center gap-2">
-              🪟 Ventanas y Persianas
-            </p>
+            <p class="font-bold text-emerald-800 text-sm sm:text-base mb-2 flex items-center gap-2">🪟 Ventanas y
+              Persianas</p>
             <div class="grid-videos">
-              <a href="https://www.youtube.com/watch?v=ZR6m4Hwod6A" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Modos de luz LED y bloqueo</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=yhQVNuBkd1Y" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Reset del Connect vía app</span>
-              </a>
-              <a href="https://youtu.be/N3D8QNu1Qhs" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Servicio Offline Connect‑2</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=LmwEcjnx4oY" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Representación persiana en tiempo real</span>
-              </a>
-              <a href="https://youtu.be/rczgOO8Upmc" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Activación del candado</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=vc7TpbaN5Bo" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Menú edición Connect‑1</span>
-              </a>
-              <a href="https://youtu.be/i1Dm_qvKTkY" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Configuración multi‑WiFi</span>
-              </a>
+              <a href="https://www.youtube.com/watch?v=ZR6m4Hwod6A" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Modos de luz LED y bloqueo</span></a>
+              <a href="https://www.youtube.com/watch?v=yhQVNuBkd1Y" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Reset del Connect vía app</span></a>
+              <a href="https://youtu.be/N3D8QNu1Qhs" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Servicio Offline Connect‑2</span></a>
+              <a href="https://www.youtube.com/watch?v=LmwEcjnx4oY" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Representación persiana en tiempo
+                  real</span></a>
+              <a href="https://youtu.be/rczgOO8Upmc" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Activación del candado</span></a>
+              <a href="https://www.youtube.com/watch?v=vc7TpbaN5Bo" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Menú edición Connect‑1</span></a>
+              <a href="https://youtu.be/i1Dm_qvKTkY" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Configuración multi‑WiFi</span></a>
             </div>
           </div>
 
-          <!-- Integración con Alexa y Google Home -->
           <div>
-            <p class="font-bold text-blue-700 mb-2 flex items-center gap-2">
-              🔗 Integración – Alexa & Google Home
-            </p>
+            <p class="font-bold text-emerald-800 text-sm sm:text-base mb-2 flex items-center gap-2">🔗 Integración –
+              Alexa & Google Home</p>
             <div class="grid-videos">
-              <a href="https://youtu.be/4_YDkKKsEsU" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Bajar persiana al anochecer (Google Home)</span>
-              </a>
-              <a href="https://youtu.be/vWD91q1BPN8" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Tarea programada persianas (Google Home)</span>
-              </a>
-              <a href="https://youtu.be/kgfnaKl2jFk" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Tarea programada persiana (Alexa)</span>
-              </a>
-              <a href="https://youtu.be/QbPyzlBy3rU" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Vincular cuenta Alexa</span>
-              </a>
-              <a href="https://youtu.be/hebELentU-Y" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Vincular Google Home</span>
-              </a>
-            </div>
-          </div>
-          <!-- Programador -->
-          <div>
-            <p class="font-bold text-blue-700 mb-2 flex items-center gap-2">
-              📅 Programador
-            </p>
-            <div class="grid-videos">
-              <a href="https://youtu.be/vg5kFWU5xTQ" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Abrir ventana abatible sin conexión</span>
-              </a>
-              <a href="https://youtu.be/Vj3Be0UmtCE" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Bajar persiana sin conexión</span>
-              </a>
-            </div>
-          </div>
-          <!-- Grupos -->
-          <div>
-            <p class="font-bold text-blue-700 mb-2 flex items-center gap-2">
-              👥 Grupos – Virtual Rooms
-            </p>
-            <div class="grid-videos">
-              <a href="https://youtu.be/RBG4mA61NYM" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Crear Virtual Room</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=JgkaWAWd7Ng" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Editar Virtual Room</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=qHCkBllnGC8" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Eliminar Virtual Rooms</span>
-              </a>
-              <a href="https://youtu.be/jFGnha7Wo6Q" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Acciones persiana virtual rooms</span>
-              </a>
-              <a href="https://youtu.be/lCAtGiUZDtA" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Acciones abatibles virtual room</span>
-              </a>
-            </div>
-          </div>
-          <!-- Asistente de Vinculación -->
-          <div>
-            <p class="font-bold text-blue-700 mb-2 flex items-center gap-2">
-              🔧 Asistente de Vinculación
-            </p>
-            <div class="grid-videos">
-              <a href="https://www.youtube.com/watch?v=KidyF4ZpdAE" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Multivinculación Dispositivo Connect</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=ItsojJBE0P4" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Vinculación Punto a Punto Connect</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=myijKC5RsZU" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Vinculación C WALL Shutter</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=TrPkktXX-dM" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Vinculación Bluetooth</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=j7V8uHqqbq0" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Vinculación AP de C-Pulsar</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=3xq4dhMhpd0" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Vinculación Multicast C-Pulsar</span>
-              </a>
+              <a href="https://youtu.be/4_YDkKKsEsU" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Bajar persiana al anochecer (Google
+                  Home)</span></a>
+              <a href="https://youtu.be/vWD91q1BPN8" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Tarea programada persianas (Google
+                  Home)</span></a>
+              <a href="https://youtu.be/kgfnaKl2jFk" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Tarea programada persiana
+                  (Alexa)</span></a>
+              <a href="https://youtu.be/QbPyzlBy3rU" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Vincular cuenta Alexa</span></a>
+              <a href="https://youtu.be/hebELentU-Y" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Vincular Google Home</span></a>
             </div>
           </div>
 
-          <!-- Grupos / Virtual Rooms -->
           <div>
-            <p class="font-bold text-blue-700 mb-2 flex items-center gap-2">
-              🔨 Instalaciones
-            </p>
+            <p class="font-bold text-emerald-800 text-sm sm:text-base mb-2 flex items-center gap-2">📅 Programador</p>
             <div class="grid-videos">
-              <a href="https://youtu.be/W1nKbomm8jI" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Instalar pulsar en cajón de persiana</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=tZ1aSM4zxdI" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Instalar Connect‑2</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=G7_DOCulUfQ" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Instalar Connect‑1</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=1jnmia28Odg" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Instalar ventana motorizada</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=mxnSQ1yJokk" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Instalar C‑WALL SHUTTER</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=R7Y946H0nxs" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Instalar Connect‑smart Pulsar</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=W1nKbomm8jI" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Instalar Pulsar en cajón</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=CbytOk28RA8" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Activar modo manual / hard reset C‑PULSAR</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=ciZx_U1ycLk" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Indicador sensor de apertura</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=3_0JS2wHc8Y" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Reset físico Connect‑1</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=V7KDo5NCLjg" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">C‑WALL sky funcionamiento</span>
-              </a>
-              <a href="https://youtu.be/fJ20WneNgXU" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">IFTTT explicación</span>
-              </a>
-              <a href="https://www.youtube.com/watch?v=lSqxdRcBJ-A" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Activar sirena con Alexa</span>
-              </a>
-              <a href="https://youtu.be/Qvya35g8D_o" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Soporte y solución de problemas de vinculación</span>
-              </a>
-              <a href="https://youtu.be/RoWQK-J5JII" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Configurar router</span>
-              </a>
-              <a href="https://youtu.be/Iczsri-nuYg" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Router Orange y Jazztel</span>
-              </a>
-              <a href="https://youtu.be/2RlnQIekOcc" target="_blank" class="tarjeta-video">
-                <span class="video-icono-play">▶</span>
-                <span class="video-titulo">Preguntas frecuentes</span>
-              </a>
+              <a href="https://youtu.be/vg5kFWU5xTQ" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Abrir ventana abatible sin
+                  conexión</span></a>
+              <a href="https://youtu.be/Vj3Be0UmtCE" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Bajar persiana sin conexión</span></a>
+            </div>
+          </div>
+
+          <div>
+            <p class="font-bold text-emerald-800 text-sm sm:text-base mb-2 flex items-center gap-2">👥 Grupos – Virtual
+              Rooms</p>
+            <div class="grid-videos">
+              <a href="https://youtu.be/RBG4mA61NYM" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Crear Virtual Room</span></a>
+              <a href="https://www.youtube.com/watch?v=JgkaWAWd7Ng" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Editar Virtual Room</span></a>
+              <a href="https://www.youtube.com/watch?v=qHCkBllnGC8" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Eliminar Virtual Rooms</span></a>
+              <a href="https://youtu.be/jFGnha7Wo6Q" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Acciones persiana virtual rooms</span></a>
+              <a href="https://youtu.be/lCAtGiUZDtA" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Acciones abatibles virtual room</span></a>
+            </div>
+          </div>
+
+          <div>
+            <p class="font-bold text-emerald-800 text-sm sm:text-base mb-2 flex items-center gap-2">🔨 Instalaciones</p>
+            <div class="grid-videos">
+              <a href="https://youtu.be/W1nKbomm8jI" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Instalar pulsar en cajón de
+                  persiana</span></a>
+              <a href="https://www.youtube.com/watch?v=tZ1aSM4zxdI" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Instalar Connect‑2</span></a>
+              <a href="https://www.youtube.com/watch?v=G7_DOCulUfQ" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Instalar Connect‑1</span></a>
+              <a href="https://www.youtube.com/watch?v=1jnmia28Odg" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Instalar ventana motorizada</span></a>
+              <a href="https://www.youtube.com/watch?v=mxnSQ1yJokk" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Instalar C‑WALL SHUTTER</span></a>
+              <a href="https://www.youtube.com/watch?v=R7Y946H0nxs" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Instalar Connect‑smart Pulsar</span></a>
+              <a href="https://www.youtube.com/watch?v=CbytOk28RA8" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Activar modo manual / hard reset
+                  C‑PULSAR</span></a>
+              <a href="https://www.youtube.com/watch?v=ciZx_U1ycLk" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Indicador sensor de apertura</span></a>
+              <a href="https://www.youtube.com/watch?v=3_0JS2wHc8Y" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Reset físico Connect‑1</span></a>
+              <a href="https://www.youtube.com/watch?v=V7KDo5NCLjg" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">C‑WALL sky funcionamiento</span></a>
+              <a href="https://youtu.be/fJ20WneNgXU" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">IFTTT explicación</span></a>
+              <a href="https://www.youtube.com/watch?v=lSqxdRcBJ-A" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Activar sirena con Alexa</span></a>
+              <a href="https://youtu.be/Qvya35g8D_o" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Soporte y solución de problemas</span></a>
+              <a href="https://youtu.be/RoWQK-J5JII" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Configurar router</span></a>
+              <a href="https://youtu.be/Iczsri-nuYg" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Router Orange y Jazztel</span></a>
+              <a href="https://youtu.be/2RlnQIekOcc" target="_blank" class="tarjeta-video"><span
+                  class="video-icono-play">▶</span><span class="video-titulo">Preguntas frecuentes</span></a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Sección: documentos PDF agrupados por categoría -->
+      <!-- Sección: Documentos PDF -->
       <section id="documentos">
-        <h2 class="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-2">
+        <h2 class="text-xl sm:text-2xl font-bold text-emerald-950 mb-3 sm:mb-4 flex items-center gap-2">
           📄 Documentación PDF
         </h2>
 
-        <div class="grid sm:grid-cols-2 gap-6">
-
-          <!-- PDFs: Perfiles de usuario -->
-          <div class="tarjeta-seccion p-4">
-            <p class="font-bold text-blue-800 mb-3 flex items-center gap-2">🗂️ Perfiles de usuario</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <div class="tarjeta-seccion p-3.5 sm:p-4">
+            <p class="font-bold text-emerald-900 text-sm sm:text-base mb-3 flex items-center gap-2">🗂️ Perfiles de
+              usuario</p>
             <div class="flex flex-col gap-2">
               <a href="https://www.iotfenster.com/wp-content/uploads/2024/06/Perfiles_de_usuario-MySmartWindow.pdf"
-                target="_blank" class="tarjeta-pdf">
-                <span class="pdf-icono">PDF</span> Perfiles de usuario
-              </a>
+                target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Perfiles de usuario</a>
               <a href="https://www.iotfenster.com/wp-content/uploads/2024/06/Perfiles_de_usuario_tarjeta.pdf"
-                target="_blank" class="tarjeta-pdf">
-                <span class="pdf-icono">PDF</span> Tarjeta perfiles de usuario
-              </a>
+                target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Tarjeta perfiles de usuario</a>
             </div>
           </div>
 
-          <!-- PDFs: Preguntas frecuentes -->
-          <div class="tarjeta-seccion p-4">
-            <p class="font-bold text-blue-800 mb-3 flex items-center gap-2">❓ Preguntas frecuentes</p>
+          <div class="tarjeta-seccion p-3.5 sm:p-4">
+            <p class="font-bold text-emerald-900 text-sm sm:text-base mb-3 flex items-center gap-2">❓ Preguntas
+              frecuentes</p>
             <div class="flex flex-col gap-2">
               <a href="https://www.iotfenster.com/wp-content/uploads/2024/06/Preguntas-frecuentes-MySmartWindow-1.pdf"
-                target="_blank" class="tarjeta-pdf">
-                <span class="pdf-icono">PDF</span> Preguntas frecuentes
-              </a>
+                target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Preguntas frecuentes</a>
               <a href="https://www.iotfenster.com/wp-content/uploads/2024/06/Pregunta-frecuentes-dispositivo-MSW-1.pdf"
-                target="_blank" class="tarjeta-pdf">
-                <span class="pdf-icono">PDF</span> Tarjeta Dispositivo
-              </a>
+                target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Tarjeta Dispositivo</a>
               <a href="https://www.iotfenster.com/wp-content/uploads/2024/06/Pregunta-frecuentes-conectividad-y-vinculacion-MSW-1.pdf"
-                target="_blank" class="tarjeta-pdf">
-                <span class="pdf-icono">PDF</span> Tarjeta Conectividad y vinculación
-              </a>
+                target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Tarjeta Conectividad</a>
               <a href="https://www.iotfenster.com/wp-content/uploads/2024/06/Preguntas-frecuentes-tipos-de-motor-1.pdf"
-                target="_blank" class="tarjeta-pdf">
-                <span class="pdf-icono">PDF</span> Tarjeta Tipos de motor
-              </a>
+                target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Tarjeta Tipos de motor</a>
             </div>
           </div>
 
-          <!-- PDFs: Instalación de dispositivos -->
-          <div class="tarjeta-seccion p-4">
-            <p class="font-bold text-blue-800 mb-3 flex items-center gap-2">⚙️ Instalación</p>
+          <div class="tarjeta-seccion p-3.5 sm:p-4">
+            <p class="font-bold text-emerald-900 text-sm sm:text-base mb-3 flex items-center gap-2">⚙️ Instalación</p>
             <div class="flex flex-col gap-2">
               <a href="https://www.iotfenster.com/wp-content/uploads/2024/06/Instalacion-Connect-1-MySmartWindow.pdf"
                 target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Connect‑1</a>
@@ -557,9 +443,8 @@
             </div>
           </div>
 
-          <!-- PDFs: Vinculación -->
-          <div class="tarjeta-seccion p-4">
-            <p class="font-bold text-blue-800 mb-3 flex items-center gap-2">🔗 Vinculación</p>
+          <div class="tarjeta-seccion p-3.5 sm:p-4">
+            <p class="font-bold text-emerald-900 text-sm sm:text-base mb-3 flex items-center gap-2">🔗 Vinculación</p>
             <div class="flex flex-col gap-2">
               <a href="https://www.iotfenster.com/wp-content/uploads/2024/05/Manual-Vinculacion-MySmartWindow-1.pdf"
                 target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Punto a Punto</a>
@@ -570,9 +455,8 @@
             </div>
           </div>
 
-          <!-- PDFs: Ecosistemas (Alexa, Google Home, IFTTT) -->
-          <div class="tarjeta-seccion p-4">
-            <p class="font-bold text-blue-800 mb-3 flex items-center gap-2">🌐 Ecosistemas</p>
+          <div class="tarjeta-seccion p-3.5 sm:p-4">
+            <p class="font-bold text-emerald-900 text-sm sm:text-base mb-3 flex items-center gap-2">🌐 Ecosistemas</p>
             <div class="flex flex-col gap-2">
               <a href="https://www.iotfenster.com/wp-content/uploads/2025/09/Manual-Alexa-Vinculacion-con-MySmartWindow.pdf"
                 target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Alexa – Vinculación</a>
@@ -583,9 +467,8 @@
             </div>
           </div>
 
-          <!-- PDFs: Hard Reset y Reset Software -->
-          <div class="tarjeta-seccion p-4">
-            <p class="font-bold text-blue-800 mb-3 flex items-center gap-2">🔧 Hard Reset / Reset Software</p>
+          <div class="tarjeta-seccion p-3.5 sm:p-4">
+            <p class="font-bold text-emerald-900 text-sm sm:text-base mb-3 flex items-center gap-2">🔧 Resets</p>
             <div class="flex flex-col gap-2">
               <a href="https://www.iotfenster.com/wp-content/uploads/2024/05/Dispositivo_botones_-MySmartWindow.pdf"
                 target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Hard reset Connect‑1</a>
@@ -595,51 +478,42 @@
                 target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Reset software Connect</a>
             </div>
           </div>
-
         </div>
       </section>
 
-      <!-- Sección: conectividad Cloud y Local -->
       <section id="conectividad">
-        <h2 class="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-2">
+        <h2 class="text-xl sm:text-2xl font-bold text-emerald-950 mb-3 sm:mb-4 flex items-center gap-2">
           🌐 Barra Inferior – Conectividad
         </h2>
-        <div class="grid sm:grid-cols-2 gap-4">
-          <!-- Tarjeta: conexión Cloud -->
-
-          <div class="tarjeta-seccion p-5">
-            <p class="text-3xl mb-2">☁️</p>
-            <h3 class="font-bold text-blue-800 text-lg">Conexión Cloud</h3>
-            <p class="text-gray-600 text-sm mt-1">Conectado al servidor remoto. Permite el control desde cualquier red o
-              fuera de casa.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="tarjeta-seccion p-4 sm:p-5">
+            <p class="text-2xl sm:text-3xl mb-2">☁️</p>
+            <h3 class="font-bold text-emerald-900 text-base sm:text-lg">Conexión Cloud</h3>
+            <p class="text-gray-600 text-xs sm:text-sm mt-1">Conectado al servidor remoto. Permite el control desde
+              cualquier red o fuera de casa.</p>
           </div>
-          <!-- Tarjeta: conexión Local Wi-Fi -->
-          <div class="tarjeta-seccion p-5">
-            <p class="text-3xl mb-2">📶</p>
-            <h3 class="font-bold text-blue-800 text-lg">Conexión Local (Wi‑Fi)</h3>
-            <p class="text-gray-600 text-sm mt-1">Conectado directamente en la red local. Mayor velocidad y funciona sin
-              internet.</p>
+          <div class="tarjeta-seccion p-4 sm:p-5">
+            <p class="text-2xl sm:text-3xl mb-2">📶</p>
+            <h3 class="font-bold text-emerald-900 text-base sm:text-lg">Conexión Local (Wi‑Fi)</h3>
+            <p class="text-gray-600 text-xs sm:text-sm mt-1">Conectado directamente en la red local. Mayor velocidad y
+              funciona sin internet.</p>
             <div class="mt-3 flex flex-col gap-2">
               <a href="https://www.iotfenster.com/wp-content/uploads/2025/10/ES_-Conectividad_Multiwifi_Documentacion-MySmartWindow.pdf"
-                target="_blank" class="tarjeta-pdf">
-                <span class="pdf-icono">PDF</span> Manual Multi‑WiFi
-              </a>
+                target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Manual Multi‑WiFi</a>
               <a href="https://www.iotfenster.com/wp-content/uploads/2024/05/Conectividad_Como-ampliar-mi-cobertura_Documentacion-MySmartWindow.pdf"
-                target="_blank" class="tarjeta-pdf">
-                <span class="pdf-icono">PDF</span> Ampliar cobertura Wi‑Fi
-              </a>
+                target="_blank" class="tarjeta-pdf"><span class="pdf-icono">PDF</span> Ampliar cobertura Wi‑Fi</a>
             </div>
           </div>
         </div>
       </section>
 
     </div>
-  </div>
-</div><!-- fin subpágina -->
 
-<!-- JavaScript: lógica de acordeones y animaciones de entrada -->
+  </div>
+
+</div>
+
 <script>
-  // Abre o cierra el acordeón al pulsar su cabecera
   function toggleAcordeon(cabecera) {
     const contenido = cabecera.nextElementSibling;
     const flecha = cabecera.querySelector('.flecha-acordeon');
@@ -654,41 +528,34 @@
     }
   }
 
-  // Sidebar activo: resalta el enlace lateral de la sección visible en pantalla
-  // Sidebar activo: resalta el enlace lateral de la sección visible en pantalla
-  const enlacesLaterales = document.querySelectorAll('.enlace-lateral');
+  const enlacesLaterales = document.querySelectorAll('.enlace-lateral-oscuro');
   const secciones = document.querySelectorAll('section[id]');
 
   function actualizarEnlaceActivo() {
-    // Comprobar si el usuario ha llegado al final del todo de la página
     const alFinalDePagina = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 50);
 
-    if (alFinalDePagina) {
-      enlacesLaterales.forEach(enlace => enlace.classList.remove('activo'));
-      enlacesLaterales[enlacesLaterales.length - 1].classList.add('activo');
+    if (alFinalDePagina && enlacesLaterales.length > 0) {
+      enlacesLaterales.forEach(enlace => enlace.classList.remove('activo-oscuro'));
+      enlacesLaterales[enlacesLaterales.length - 1].classList.add('activo-oscuro');
     }
   }
 
   const observador = new IntersectionObserver((entradas) => {
-    // Si estamos en el fondo total de la página, dejamos que el evento de scroll mande
     const alFinalDePagina = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 50);
     if (alFinalDePagina) return;
 
     entradas.forEach(entrada => {
       if (entrada.isIntersecting) {
-        enlacesLaterales.forEach(enlace => enlace.classList.remove('activo'));
-        const enlaceActivo = document.querySelector(`.enlace-lateral[href="#${entrada.target.id}"]`);
-        if (enlaceActivo) enlaceActivo.classList.add('activo');
+        enlacesLaterales.forEach(enlace => enlace.classList.remove('activo-oscuro'));
+        const enlaceActivo = document.querySelector(`.enlace-lateral-oscuro[href="#${entrada.target.id}"]`);
+        if (enlaceActivo) enlaceActivo.classList.add('activo-oscuro');
       }
     });
-  }, { rootMargin: '-10% 0px -40% 0px' }); // Ajustado para ser más permisivo
+  }, { rootMargin: '-10% 0px -40% 0px' });
 
   secciones.forEach(seccion => observador.observe(seccion));
-
-  // Escuchar el evento de scroll para activar la última sección al llegar al final
   window.addEventListener('scroll', actualizarEnlaceActivo);
 
-  // Animación de entrada: las tarjetas aparecen al entrar en el viewport
   const elementosAnimados = document.querySelectorAll('.tarjeta-seccion, .tarjeta-video');
 
   const observadorEntrada = new IntersectionObserver((entradas) => {
@@ -698,13 +565,12 @@
         entrada.target.style.transform = 'translateY(0)';
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.05 });
 
-  // Inicialmente invisibles para que la animación tenga efecto
   elementosAnimados.forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    el.style.transform = 'translateY(15px)';
+    el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
     observadorEntrada.observe(el);
   });
 </script>
