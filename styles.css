@@ -2,79 +2,99 @@
 
 /* ==========================================================
    TOKENS — identidad mySmartWindow / IoT Fenster
-   Paleta inspirada en el cristal de las ventanas inteligentes
-   (verde eficiencia energética + destello cálido de luz solar)
+   Escalados dentro de #msw-doc para no afectar al resto del
+   sitio en el que se inserta esta subpágina.
+   Modo claro por defecto; modo oscuro vía [data-theme="dark"].
    ========================================================== */
-:root {
-  /* Verdes de marca */
+#msw-doc {
+  /* Verdes de marca (comunes a ambos temas) */
   --brand: #0EA672;
   --brand-strong: #0B7A56;
-  --brand-deep: #0A4632;
-  --brand-soft: #4ADE94;
-
-  /* Acento cálido — el "destello de luz" a través del cristal */
-  --sun: #F0B429;
-  --sun-soft: #FBD98A;
-
-  /* Base: grafito con temperatura verde, no gris-azulado genérico */
-  --ink: #071410;
-  --surface: #0E211B;
-  --surface-raised: #143229;
-  --surface-inset: #0A1B15;
-
-  --line: rgba(150, 214, 190, 0.14);
-  --line-strong: rgba(150, 214, 190, 0.28);
-
-  --text: #EDF7F2;
-  --text-dim: #C4DED2;
-  --muted: #86AC9C;
+  --sun: #C9821A;
 
   --radius-lg: 20px;
   --radius-md: 14px;
   --radius-sm: 9px;
   --radius-pill: 999px;
 
-  --shadow-soft: 0 10px 30px -12px rgba(4, 30, 20, 0.55);
-  --shadow-lift: 0 16px 40px -14px rgba(4, 30, 20, 0.7);
-
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --speed: 0.22s;
 
   --font-display: 'Space Grotesk', 'Inter', sans-serif;
   --font-body: 'Inter', sans-serif;
+
+  /* ── Modo claro (por defecto) ── */
+  --bg: #F4FAF7;
+  --bg-wash-1: rgba(14, 166, 114, 0.09);
+  --bg-wash-2: rgba(201, 130, 26, 0.05);
+  --surface: #FFFFFF;
+  --surface-raised: #EAF6EF;
+  --surface-inset: #F0F8F4;
+  --line: rgba(6, 95, 63, 0.14);
+  --line-strong: rgba(6, 95, 63, 0.28);
+  --text: #0C2A20;
+  --text-dim: #3C5A4E;
+  --muted: #628173;
+  --on-brand: #FFFFFF;
+  --brand-soft: #0B7A56;
+  --sun-soft: #9A5F0E;
+  --shadow-soft: 0 8px 24px -14px rgba(12, 60, 42, 0.25);
+  --shadow-lift: 0 16px 34px -14px rgba(12, 60, 42, 0.32);
 }
 
-* {
+#msw-doc[data-theme="dark"] {
+  --bg: #0E211B;
+  --bg-wash-1: rgba(14, 166, 114, 0.16);
+  --bg-wash-2: rgba(240, 180, 41, 0.06);
+  --surface: #163229;
+  --surface-raised: #1D4034;
+  --surface-inset: #12281F;
+  --line: rgba(160, 214, 190, 0.16);
+  --line-strong: rgba(160, 214, 190, 0.3);
+  --text: #EFFBF6;
+  --text-dim: #C4DED2;
+  --muted: #8FB3A6;
+  --on-brand: #FFFFFF;
+  --brand-soft: #4ADE94;
+  --sun-soft: #FBD98A;
+  --shadow-soft: 0 10px 30px -12px rgba(2, 15, 10, 0.55);
+  --shadow-lift: 0 16px 40px -14px rgba(2, 15, 10, 0.7);
+}
+
+#msw-doc * {
   box-sizing: border-box;
 }
 
-body {
+#msw-doc {
   font-family: var(--font-body);
-  background-color: var(--ink);
+  background-color: var(--bg);
   background-image:
-    radial-gradient(ellipse 900px 500px at 12% -10%, rgba(14, 166, 114, 0.16), transparent 60%),
-    radial-gradient(ellipse 700px 500px at 100% 15%, rgba(240, 180, 41, 0.06), transparent 55%);
-  background-attachment: fixed;
+    radial-gradient(ellipse 900px 500px at 12% -10%, var(--bg-wash-1), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 15%, var(--bg-wash-2), transparent 55%);
   color: var(--text);
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+  transition: background-color var(--speed) var(--ease), color var(--speed) var(--ease);
 }
 
-h1,
-h2,
-h3,
-.tarjeta-titulo,
-.video-titulo {
+#msw-doc h1,
+#msw-doc h2,
+#msw-doc h3,
+#msw-doc .tarjeta-titulo,
+#msw-doc .video-titulo {
   font-family: var(--font-display);
 }
 
 /* ─── CABECERA DE PÁGINA ───────────────────────────────────── */
 .cabecera-pagina {
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
   background:
-    linear-gradient(155deg, rgba(14, 166, 114, 0.16), rgba(10, 27, 21, 0.4) 55%),
+    linear-gradient(155deg, rgba(14, 166, 114, 0.14), transparent 55%),
     var(--surface);
   padding: 1.5rem 1.5rem 1.65rem;
   overflow: hidden;
@@ -84,6 +104,7 @@ h3,
 @media (min-width: 640px) {
   .cabecera-pagina {
     padding: 2.1rem 2.4rem 2.3rem;
+    flex-wrap: nowrap;
   }
 }
 
@@ -94,8 +115,16 @@ h3,
   right: -10%;
   width: 55%;
   height: 220%;
-  background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.05) 48%, transparent 56%);
+  background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.35) 48%, transparent 56%);
   pointer-events: none;
+}
+
+#msw-doc[data-theme="dark"] .cabecera-pagina::after {
+  background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.05) 48%, transparent 56%);
+}
+
+.cabecera-texto {
+  min-width: 0;
 }
 
 .cabecera-etiqueta {
@@ -115,7 +144,7 @@ h3,
 .cabecera-titulo {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: var(--text);
   letter-spacing: -0.01em;
   line-height: 1.15;
   margin: 0 0 0.5rem;
@@ -141,16 +170,52 @@ h3,
   }
 }
 
-/* ─── ÁRBOL VISUAL APP ─────────────────────────────────────── */
+/* ─── INTERRUPTOR CLARO / OSCURO ───────────────────────────── */
+.selector-tema {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  background: var(--surface-inset);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 0.3rem;
+}
+
+.boton-tema {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background var(--speed) var(--ease), color var(--speed) var(--ease);
+}
+
+.boton-tema[aria-pressed="true"] {
+  background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px -4px rgba(14, 166, 114, 0.5);
+}
+
+/* ─── ÁRBOL VISUAL APP (siempre oscuro, estilo "consola") ──── */
 .arbol-app {
   font-family: 'Space Grotesk', 'Courier New', monospace;
   font-size: 0.78rem;
   line-height: 1.65;
-  background-color: var(--surface-inset);
+  background-color: #0A1B15;
   color: #B9EFD3;
   border-radius: var(--radius-md);
   padding: 1.1rem 1.2rem;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(150, 214, 190, 0.16);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), var(--shadow-soft);
   position: relative;
   overflow-x: auto;
@@ -173,12 +238,12 @@ h3,
   height: 3px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--brand), var(--sun) 130%);
-  opacity: 0.55;
+  opacity: 0.65;
   margin-bottom: 0.9rem;
 }
 
 .arbol-nodo-clicable {
-  color: var(--sun-soft);
+  color: #FBD98A;
   cursor: pointer;
   text-decoration: none;
   font-weight: 500;
@@ -192,10 +257,10 @@ h3,
 }
 
 /* ─── SECCIÓN: TÍTULOS ─────────────────────────────────────── */
-section>h2 {
+#msw-doc section>h2 {
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: #FFFFFF !important;
+  color: var(--text) !important;
 }
 
 /* ─── TARJETAS DE SECCIÓN (acordeones y bloques) ───────────── */
@@ -204,7 +269,7 @@ section>h2 {
   border-radius: var(--radius-md);
   border: 1px solid var(--line);
   position: relative;
-  transition: border-color var(--speed) var(--ease), transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
+  transition: border-color var(--speed) var(--ease), transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease), background-color var(--speed) var(--ease);
   overflow: hidden;
   color: var(--text);
   box-shadow: var(--shadow-soft);
@@ -233,14 +298,14 @@ section>h2 {
   padding: 0.9rem 1.25rem;
   cursor: pointer;
   background-color: transparent;
-  color: #FFFFFF;
+  color: var(--text);
   user-select: none;
   border-bottom: 1px solid transparent;
   transition: background-color var(--speed) var(--ease);
 }
 
 .tarjeta-cabecera:hover {
-  background-color: rgba(14, 166, 114, 0.08);
+  background-color: var(--surface-raised);
 }
 
 @media (min-width: 640px) {
@@ -252,7 +317,7 @@ section>h2 {
 .tarjeta-cabecera .tarjeta-titulo {
   font-size: 0.98rem;
   font-weight: 600;
-  color: #FFFFFF;
+  color: var(--text);
 }
 
 @media (min-width: 640px) {
@@ -326,7 +391,7 @@ section>h2 {
   background: var(--surface-raised) !important;
   border: 1px solid var(--line) !important;
   border-radius: var(--radius-sm) !important;
-  transition: border-color var(--speed) var(--ease), transform var(--speed) var(--ease);
+  transition: border-color var(--speed) var(--ease), transform var(--speed) var(--ease), background-color var(--speed) var(--ease);
 }
 
 .contenido-acordeon .bg-emerald-50\/60:hover {
@@ -336,17 +401,17 @@ section>h2 {
 
 /* ─── Reasignación global de utilidades de color de Tailwind
    al nuevo sistema de tokens (contenido y enlaces intactos) ─── */
-.text-emerald-950,
-.text-emerald-900 {
-  color: #FFFFFF !important;
+#msw-doc .text-emerald-950,
+#msw-doc .text-emerald-900 {
+  color: var(--text) !important;
 }
 
-.text-emerald-800 {
+#msw-doc .text-emerald-800 {
   color: var(--brand-soft) !important;
 }
 
-.text-gray-600,
-.text-gray-500 {
+#msw-doc .text-gray-600,
+#msw-doc .text-gray-500 {
   color: var(--muted) !important;
 }
 
@@ -393,13 +458,13 @@ section>h2 {
 .video-icono-play {
   width: 32px;
   height: 32px;
-  background: linear-gradient(155deg, var(--sun), #D9930E);
+  background: linear-gradient(155deg, #F0B429, #C9821A);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: #241503;
+  color: #2A1B02;
   font-size: 0.72rem;
 }
 
@@ -486,7 +551,7 @@ section>h2 {
 .chip-funcion {
   display: inline-flex;
   align-items: center;
-  background-color: rgba(14, 166, 114, 0.14);
+  background-color: rgba(14, 166, 114, 0.12);
   color: var(--brand-soft);
   font-size: 0.74rem;
   font-weight: 600;
@@ -503,7 +568,7 @@ a.chip-funcion:hover {
 
 /* ─── NAVEGACIÓN MÓVIL (franja superior) ───────────────────── */
 .nav-movil {
-  background: linear-gradient(150deg, var(--surface-raised), var(--ink) 120%);
+  background: var(--surface);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-soft);
 }
@@ -522,8 +587,8 @@ a.chip-funcion:hover {
   font-weight: 600;
   color: var(--brand-soft);
   letter-spacing: 0.01em;
-  background: rgba(14, 166, 114, 0.14);
-  border: 1px solid rgba(14, 166, 114, 0.3);
+  background: rgba(14, 166, 114, 0.12);
+  border: 1px solid rgba(14, 166, 114, 0.28);
   padding: 0.32rem 0.7rem;
   border-radius: var(--radius-pill);
 }
@@ -554,7 +619,7 @@ a.chip-funcion:hover {
 }
 
 .panel-lateral {
-  background: linear-gradient(165deg, var(--surface-raised), var(--surface) 60%);
+  background: var(--surface);
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-soft);
@@ -573,7 +638,7 @@ a.chip-funcion:hover {
   inset: 0;
   opacity: 1;
   background:
-    radial-gradient(circle at 20% 15%, rgba(14, 166, 114, 0.18), transparent 45%),
+    radial-gradient(circle at 20% 15%, rgba(14, 166, 114, 0.16), transparent 45%),
     radial-gradient(circle at 85% 85%, rgba(240, 180, 41, 0.1), transparent 50%);
 }
 
@@ -607,7 +672,7 @@ a.chip-funcion:hover {
 
 .enlace-lateral-oscuro:hover {
   background-color: var(--surface-raised);
-  color: #FFFFFF;
+  color: var(--text);
   border-color: var(--line-strong);
 }
 
@@ -633,7 +698,7 @@ a.chip-funcion:hover {
     transform: translateX(-50%);
     background-color: var(--surface-inset);
     border: 1px solid var(--line-strong);
-    color: #FFFFFF;
+    color: var(--text);
     font-size: 0.72rem;
     white-space: nowrap;
     padding: 0.3rem 0.6rem;
@@ -657,15 +722,15 @@ a.chip-funcion:hover {
   scrollbar-width: none;
 }
 
-a:focus-visible,
-button:focus-visible,
-.tarjeta-cabecera:focus-visible {
+#msw-doc a:focus-visible,
+#msw-doc button:focus-visible,
+#msw-doc .tarjeta-cabecera:focus-visible {
   outline: 2px solid var(--sun);
   outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  #msw-doc * {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
